@@ -3,7 +3,20 @@
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
+#include<windows.h>
+
 using namespace std;
+
+ 
+
+void gotoxy(int x,int y)	
+{
+	printf("%c[%d;%df",0x1B,y,x);
+}
+void clrscr(void)
+{
+	system("cls");
+}
 int input(){
 int i;
 do{
@@ -26,11 +39,13 @@ else
 int main()
 {
     fstream f;
-     int x;
+     int x,y;
     // travel t;
 do{
-//clrscr();
-printf("**********************Welcome**********************\n");
+clrscr();
+system("color 3");
+gotoxy(4,4);printf("**********************Welcome**********************\n");
+//system("color 4");
 printf("Enter your type...\n");
 printf("1)ADMIN\n");
 printf("2)LAUNDRY BOY\n");
@@ -40,9 +55,10 @@ x=input();
 switch(x){
     case 1: //ADMIN
             printf("\n");
-            printf("Are you a new User?\nEnter 1 for yes" or no\n");
+            printf("Are you a new User?\n");
             x=input();
-            swith(x){
+            switch(x){
+                clrscr();
                 case 1: printf("Sign up");
                 //enter code here
                 case 0: printf("Login");
@@ -74,7 +90,7 @@ switch(x){
                                     printf("8)Lower\n");
                                     printf("9)Shorts\n");
                                     printf("10)Exit\n");
-                                    z=input();
+                                    int z=input();
                                     switch(z){
                                         case 1:
                                         case 2:
@@ -85,19 +101,19 @@ switch(x){
                                         case 7:
                                         case 8:
                                         case 9:printf("Enter quantity to be added\n");
-                                        q=input();
+                                      int  q=input();
                                         printf("%d items of type %d added to laundry",q,z);
                                         printf("Do you want to add more?\n");
-                                        ch=input();
+                                      int  ch=input();
                                         if(ch==1)
                                         //should go back to outer switch...I don't know how :(
                                         if(ch==0)
                                         break;
-                                        
-                                    case 2: break;
-                                    }    
-                            case 2: break;
-                        }
+                                    }break;
+                                
+                                }   
+                            
+                        
                 case 3: printf("Update");
                 //Enter code here
                 case 4: break;
