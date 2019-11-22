@@ -1,9 +1,11 @@
 #include <fstream>
+#include<iostream>
 #include<conio.h>
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
 #include<windows.h>
+#include "Admin.h"
 
 using namespace std;
 
@@ -39,7 +41,9 @@ else
 int main()
 {
     fstream f;
-     int x,y;
+    //f.open("Users.dat",ios::out|ios::app);f.close();
+    int x,y;
+    int userType;
     // travel t;
 do{
 clrscr();
@@ -53,18 +57,53 @@ printf("3)CUSTOMER\n");
 printf("4)EXIT\n");
 x=input();
 switch(x){
-    case 1: //ADMIN
+    case 1:{ //ADMIN
+            Admin a;
+            f.open("Admins.dat",ios::out|ios::app);f.close();
+            char ch;
             printf("\n");
             printf("Are you a new User?\n");
-            x=input();
-            switch(x){
-                clrscr();
-                case 1: printf("Sign up");
-                //enter code here
-                case 0: printf("Login");
-                //enter code here
+            cin>>ch;
+            switch(ch){
+                
+                case 'y':{clrscr(); printf("********************SIGN UP**********************");
+                        cout<<endl<<"enther the Id of the new user :";
+                        string newId;
+                        cin>>newId;
+                        f.open("Admins.dat",ios::in);
+                        f.seekg(0);
+                        int chk=0;
+                        cout<<"a";
+                        string tempid;
+                     while(!(f.eof())){
+                         cout<<"a";
+                      f.read((char*)&a,sizeof(a));
+                      if(f.eof())break;
+                      tempid=a.returnId();
+                      if(tempid==newId){
+                          cout<<"The User already exists ..please use another code..\npress enter...";getch();chk++;
+                          break;
+                          }
+                         }
+                        f.close();
+                        cout<<"a";
+                        if(chk==0){
+                            f.open("Admins.dat",ios::out|ios::app);
+                            a.addAdmin(newId);
+                            f.write((char*)&a,sizeof(a));
+                            f.close();
+                        }
+                       
+                        getch();
+                        break;}
+                
+                case 'n': {printf("Login");
+                        break;}
+               
             }
-    case 2: //Laundry BOY
+            break;
+        }
+    case 2:{ //Laundry BOY
             printf("Enter choice...\n");
             printf("1)Display Schedule\n");
             printf("2)Add Laundry\n");
@@ -72,14 +111,14 @@ switch(x){
             printf("4)Exit\n");
             x=input();
             switch(x){
-                case 1: printf("Present Schedule is as follows :");
+                case 1:{ printf("Present Schedule is as follows :");break;}
                 //Enter code here
-                case 2: printf("Enter choice...\n");
+                case 2: {printf("Enter choice...\n");
                         printf("1)Add Item\n");
                         printf("2)Exit \n");
                         y=input();
                         switch(y){
-                            case 1: printf("Choose Item to added\n");
+                            case 1:{ printf("Choose Item to added\n");
                                     printf("1)Shrit\n"); 
                                     printf("2)T-Shrit\n");
                                     printf("3)Jeans\n");
@@ -92,35 +131,31 @@ switch(x){
                                     printf("10)Exit\n");
                                     int z=input();
                                     switch(z){
-                                        case 1:
-                                        case 2:
-                                        case 3:
-                                        case 4:
-                                        case 5:
-                                        case 6:
-                                        case 7:
-                                        case 8:
-                                        case 9:printf("Enter quantity to be added\n");
-                                      int  q=input();
-                                        printf("%d items of type %d added to laundry",q,z);
-                                        printf("Do you want to add more?\n");
-                                      int  ch=input();
-                                        if(ch==1)
-                                        //should go back to outer switch...I don't know how :(
-                                        if(ch==0)
-                                        break;
-                                    }break;
-                                
+                                        case 1:{break;}
+                                        case 2:{break;}
+                                        case 3:{break;}
+                                        case 4:{break;}
+                                        case 5:{break;}
+                                        case 6:{break;}
+                                        case 7:{break;}
+                                        case 8:{break;}
+                                        case 9:{break;}
+                                     
+                                    }break;}
+                                case 2:{cout<<endl<<"exit";break;}
                                 }   
-                            
+                break;}
                         
-                case 3: printf("Update");
+                case 3: {printf("Update"); break;}
                 //Enter code here
-                case 4: break;
+                case 4: {break;}
             }
-            
-    case 3: //CUSTOMER
-    default: printf("Thanks for visiting");
+            break;
+    }
+    case 3: {//CUSTOMER
+        break;
+        }
+    default: {printf("Thanks for visiting");break;}
 
 
 }//switch
