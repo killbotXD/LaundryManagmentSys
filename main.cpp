@@ -48,13 +48,14 @@ int main()
 do{
 clrscr();
 system("color 3");
-gotoxy(4,4);printf("**********************Welcome**********************\n");
+gotoxy(4,1);printf("**********************Welcome**********************\n");
 //system("color 4");
 printf("Enter your type...\n");
 printf("1)ADMIN\n");
 printf("2)LAUNDRY BOY\n");
 printf("3)CUSTOMER\n");
 printf("4)EXIT\n");
+cout<<"Enter any one of the choices: ";
 x=input();
 switch(x){
     case 1:{ //ADMIN
@@ -73,31 +74,32 @@ switch(x){
                         f.open("Admins.dat",ios::in);
                         f.seekg(0);
                         int chk=0;
-                        cout<<"a";
                         string tempid;
                      while(!(f.eof())){
-                         cout<<"a";
                       f.read((char*)&a,sizeof(a));
                       if(f.eof())break;
                       tempid=a.returnId();
                       if(tempid==newId){
-                          cout<<"The User already exists ..please use another code..\npress enter...";getch();chk++;
+                          cout<<"The User already exists ..please use another code..";chk++;
                           break;
                           }
                          }
                         f.close();
-                        cout<<"a";
+                        
                         if(chk==0){
                             f.open("Admins.dat",ios::out|ios::app);
                             a.addAdmin(newId);
                             f.write((char*)&a,sizeof(a));
+                            cout<<"Registred succesfully!"<<endl;
                             f.close();
                         }
-                       
+                          cout<<endl<<"press enter...";  
                         getch();
+                        //TODO: need to add the admin method which will be called to show the menu of admin 
                         break;}
                 
                 case 'n': {printf("Login");
+                 //TODO: need to add the admin method which will be called to show the menu of admin after login
                         break;}
                
             }
