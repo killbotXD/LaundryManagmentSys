@@ -51,7 +51,7 @@ void addUser(string newId){
     cout<<"Enter Username: ";
     cin>>tempUsername;
     changeName(tempUsername);
-    cout<<"Enter Password(note: default password is\"password\"):";
+    cout<<"Enter Password(note: default password is\"password\"): ";
     cin>>tempPwd;
     changePassword(tempPwd);
     

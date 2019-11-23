@@ -19,7 +19,7 @@ class Admin:public User{
     void deassignLaundryAttendant();
     void addAdmin(string newId){
         addUser(newId);
-        cout<<endl<<"Enter your mobile number";
+        cout<<endl<<"Enter your mobile number: ";
         cin>>mobile;
              
     }
