@@ -9,7 +9,7 @@ int main()
     // travel t;
 do{
 clrscr();
-system("color 3");
+//system("color 3");
 gotoxy(4,1);printf("**********************Welcome**********************\n");
 //system("color 4");
 printf("Enter your type...\n");
@@ -56,7 +56,7 @@ switch(x){
                             f.close();
                         }
                           cout<<endl<<"press enter...";  
-                        getch();
+                        char temp=getchar();
                         showAdminMenu();
                         break;}
                 
@@ -97,7 +97,7 @@ switch(x){
                             }       
                          }      
                          cout<<"press enter....";         
-                        getch();
+                        char temp=getchar();
                  //TODO: need to add the admin method which will be called to show the menu of admin after login
                         break;}
                

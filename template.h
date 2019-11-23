@@ -1,17 +1,15 @@
 #include <fstream>
 #include<iostream>
-#include<conio.h>
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
-#include<windows.h>
 #include "Admin.h"
 
 using namespace std;
 
 Admin a;
 
-#define ent {cout<<"press enter..."<<endl; getch();}
+#define ent {cout<<"press enter..."<<endl; char temp=getchar();}
 #define fr(a) f.read((char*)&a,sizeof(a))
 #define skg  f.seekg(0)
 void gotoxy(int x,int y)	
@@ -20,7 +18,7 @@ void gotoxy(int x,int y)
 }
 void clrscr(void)
 {
-	system("cls");
+	system("clear");
 }
 int input(){
 int i;
