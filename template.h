@@ -3,6 +3,7 @@
 #include<conio.h>
 #include<string.h>
 #include<stdio.h>
+#include<stdlib.h>
 #include "admin.h"
 using namespace std;
 
