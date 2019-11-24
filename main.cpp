@@ -109,6 +109,108 @@ fstream fadmin;
                 //cout<<"admin"<<" "<<a.password<<endl;
                 
 }
+
+void showlboyMenu(){
+    int inp;
+   do{
+    //clrscr();  
+    cout<<"*****************LAUNDRY MENU************"<<endl;
+    printf("Enter choice...\n");
+            printf("1)Display Schedule\n");
+            printf("2)Add Laundry\n");
+            printf("3)Update Profile\n");
+            printf("4)Exit\n");
+            int x;
+            x=input();
+            switch(x){
+                case 1:{ printf("Present Schedule is as follows :");break;}
+                //Enter code here
+                case 2: {printf("Enter choice...\n");
+                        printf("1)Add Item\n");
+                        printf("2)Exit \n");
+                        int y;
+                        y=input();
+                        switch(y){
+                            case 1:{ printf("Choose Item to added\n");
+                                    printf("1)Shrit\n"); 
+                                    printf("2)T-Shrit\n");
+                                    printf("3)Jeans\n");
+                                    printf("4)Trouser\n");
+                                    printf("5)Bed sheet\n");
+                                    printf("6)Towel\n");
+                                    printf("7)Suit\n");
+                                    printf("8)Lower\n");
+                                    printf("9)Shorts\n");
+                                    printf("10)Exit\n");
+                                    int z=input();
+                                    switch(z){
+                                        case 1:{break;}
+                                        case 2:{break;}
+                                        case 3:{break;}
+                                        case 4:{break;}
+                                        case 5:{break;}
+                                        case 6:{break;}
+                                        case 7:{break;}
+                                        case 8:{break;}
+                                        case 9:{break;}
+                                     
+                                    }break;}
+                                case 2:{cout<<endl<<"exit";break;}
+                                }   
+                break;}
+                        
+                case 3: {printf("Update"); break;}
+                //Enter code here
+                case 4: {  break;}
+            }
+   }while(inp!=4);
+}
+void is_firsttime_launch_lboy(){
+    char c;
+    fstream file,fb;
+    lboy b;
+    file.open("datab.txt",ios::in);
+    file>>c;
+    file.close();
+    if(c=='y'){
+        cout<<"creating default lboy"<<endl;
+        file.open("datab.txt",ios::out);file<<'n';file.close();
+        fb.open("lboy.dat",ios::out);
+        fb.write((char*)&b,sizeof(lboy));
+        fb.close();
+    }
+}
+
+
+void loginlboy(){
+fstream flboy;
+                lboy b;
+                string tempid,temppwd;
+                is_firsttime_launch_lboy();
+                cout<<"enter your ID: ";
+                cin>>tempid;
+                flboy.open("lboy.dat",ios::in);
+                flboy.seekg(0);
+                while(!flboy.eof()){
+                    flboy.read((char*)&b,sizeof(b));
+                    //cout<<a.id<<" id "<<tempid<<endl;
+                    if(strcmp(b.id,tempid.c_str())==0){cout<<"User Found!!"<<endl;break;}
+
+                }
+                if(strcmp(b.id,tempid.c_str())!=0){cout<<"User not Found!!"<<endl;return;}
+                flboy.close();
+                
+                cout<<"Enter the password: ";
+                cin>>temppwd;
+                if(strcmp(b.password,temppwd.c_str())==0){
+                    cout<<"Password match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
+                    ent
+                    showlboyMenu();
+                }
+                //cout<<"admin"<<" "<<a.password<<endl;
+}
+
+
 int main(){
     int inp;
     do{
@@ -124,11 +226,12 @@ int main(){
             case 1:{
                 loginadmin();
                 break;}
-            case 2: {
-                cout<<"customer";
+            case 2: {cout<<"customer";
+                //logincustomer();
                 break;}
             case 3:{
                 cout<<"Laundry Boy";
+                loginlboy();
                 break;}
 
         }
