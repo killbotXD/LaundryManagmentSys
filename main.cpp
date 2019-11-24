@@ -164,9 +164,9 @@ void showlboyMenu(){
                 case 3: {printf("Update"); break;}
                 case 4: {printf("Add customer"); break;}
                 //Enter code here
-                case 4: {  break;}
+                case 5: {  break;}
             }
-   }while(x!=4);
+   }while(x!=5);
 }
 void is_firsttime_launch_lboy(){
     char c;
