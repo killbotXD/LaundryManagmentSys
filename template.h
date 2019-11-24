@@ -1,6 +1,9 @@
 #include<iostream>
 #include<fstream>
 #include<conio.h>
+#include<string.h>
+#include<stdio.h>
+#include "admin.h"
 using namespace std;
 
 #define ent {cout<<"press enter..."<<endl; getch();}
