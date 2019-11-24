@@ -210,6 +210,70 @@ fstream flboy;
                 //cout<<"admin"<<" "<<a.password<<endl;
 }
 
+void showcustomerMenu(){
+    int x;
+   do{
+    //clrscr();  
+    cout<<"*****************CUSTOMER MENU************"<<endl;
+    printf("Enter choice...\n");
+            printf("1)Update Profile\n");
+            printf("2)Display Schedule\n");
+            printf("3)Mark Laundry Received\n");
+            printf("4)Exit\n");
+            x=input();
+            switch(x){
+                case 1:{  cout<<"Update Profile";break;}
+                //Enter code here
+                case 2: {printf("Display Schedule\n");              
+                                    break;}
+                case 3: {printf("Mark Laundry Received"); break;}
+                //Enter code here
+                case 4: {  break;}
+            }
+   }while(x!=4);
+}
+void is_firsttime_launch_customer(){
+    char c;
+    fstream file,fb;
+    customer b;
+    file.open("datac.txt",ios::in);
+    file>>c;
+    file.close();
+    if(c=='y'){
+        cout<<"creating default customer"<<endl;
+        file.open("datac.txt",ios::out);file<<'n';file.close();
+        fb.open("customer.dat",ios::out);
+        fb.write((char*)&b,sizeof(customer));
+        fb.close();
+    }
+}
+void logincustomer(){
+fstream fcustomer;
+                customer b;
+                string tempid,temppwd;
+                is_firsttime_launch_customer();
+                cout<<"enter your ID: ";
+                cin>>tempid;
+                fcustomer.open("customer.dat",ios::in);
+                fcustomer.seekg(0);
+                while(!fcustomer.eof()){
+                    fcustomer.read((char*)&b,sizeof(b));
+                    //cout<<a.id<<" id "<<tempid<<endl;
+                    if(strcmp(b.id,tempid.c_str())==0){cout<<"User Found!!"<<endl;break;}
+
+                }
+                if(strcmp(b.id,tempid.c_str())!=0){cout<<"User not Found!!"<<endl;return;}
+                fcustomer.close();
+                
+                cout<<"Enter the password: ";
+                cin>>temppwd;
+                if(strcmp(b.password,temppwd.c_str())==0){
+                    cout<<"Password match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
+                    ent
+                    showcustomerMenu();
+                }
+                //cout<<"admin"<<" "<<a.password<<endl;
+}
 
 int main(){
     int inp;
@@ -226,7 +290,9 @@ int main(){
             case 1:{
                 loginadmin();
                 break;}
-            case 2: {cout<<"customer";
+            case 2: {
+                cout<<"Customer";
+                logincustomer();
                 //logincustomer();
                 break;}
             case 3:{

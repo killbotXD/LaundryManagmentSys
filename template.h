@@ -6,6 +6,7 @@
 #include<stdlib.h>
 #include "admin.h"
 #include "lboy.h"
+#include "customer.h"
 using namespace std;
 
 #define ent {cout<<"press enter..."<<endl; getch();}
