@@ -1,19 +1,9 @@
-#include <fstream>
 #include<iostream>
+#include<fstream>
 #include<conio.h>
-#include<stdio.h>
-#include<string.h>
-#include<math.h>
-#include<windows.h>
-#include "Admin.h"
-
 using namespace std;
 
-Admin a;
-
 #define ent {cout<<"press enter..."<<endl; getch();}
-#define fr(a) f.read((char*)&a,sizeof(a))
-#define skg  f.seekg(0)
 void gotoxy(int x,int y)	
 {
 	printf("%c[%d;%df",0x1B,y,x);
