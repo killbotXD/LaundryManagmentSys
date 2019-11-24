@@ -54,10 +54,11 @@ switch(x){
                             f.write((char*)&a,sizeof(a));
                             cout<<"Registred succesfully!"<<endl;
                             f.close();
+                            showAdminMenu();
                         }
                           cout<<endl<<"press enter...";  
                         getch();
-                        showAdminMenu();
+                        
                         break;}
                 
                 case 'n': {
