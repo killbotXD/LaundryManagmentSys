@@ -10,9 +10,9 @@ string password;
 string id;
 public:
 User(){
-    username="Username";
-    password="password";
-    id="NULL";
+    username="admin";
+    password="admin";
+    id="admin";
 }
 
 string returnId(){
