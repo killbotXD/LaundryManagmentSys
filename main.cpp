@@ -111,7 +111,7 @@ fstream fadmin;
 }
 
 void showlboyMenu(){
-    int inp;
+    
    do{
     //clrscr();  
     cout<<"*****************LAUNDRY MENU************"<<endl;
@@ -125,7 +125,8 @@ void showlboyMenu(){
             switch(x){
                 case 1:{ printf("Present Schedule is as follows :");break;}
                 //Enter code here
-                case 2: {printf("Enter choice...\n");
+                case 2: do{
+                        {printf("Enter choice...\n");
                         printf("1)Add Item\n");
                         printf("2)Exit \n");
                         int y;
@@ -157,13 +158,15 @@ void showlboyMenu(){
                                     }break;}
                                 case 2:{cout<<endl<<"exit";break;}
                                 }   
+                        }while(y!=2);
                 break;}
                         
                 case 3: {printf("Update"); break;}
+                case 4: {printf("Add customer"); break;}
                 //Enter code here
-                case 4: {  break;}
+                case 5: {  break;}
             }
-   }while(inp!=4);
+   }while(x!=5);
 }
 void is_firsttime_launch_lboy(){
     char c;
