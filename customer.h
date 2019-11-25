@@ -7,6 +7,8 @@ using namespace std;
 class customer: public user{
     public:
     char mobile[10];
+    char hostel[2];
+    char roomnumber[3];
     customer(){
         strcpy(id,"customer");
        // id="admin";

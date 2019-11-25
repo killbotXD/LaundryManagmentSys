@@ -90,7 +90,7 @@ void editScheduleItem(){
         case 7:{cout<<"Sunday"<<endl; ent break;}
         case 8:{cout<<"Exit"<<endl;  break;}
 
-    }}while(inpEdit!=8)
+    }}while(inpEdit!=8);
 }
 void updateSchedule(){
     int inpUpdateSchedule;
@@ -337,6 +337,12 @@ fstream flboy;
                 //cout<<"admin"<<" "<<a.password<<endl;
 }
 
+void updatecustomerprofile()
+{
+    customer c;
+
+}
+
 void showcustomerMenu(){
     int x;
    do{
@@ -349,7 +355,7 @@ void showcustomerMenu(){
             printf("4)Exit\n");
             x=input();
             switch(x){
-                case 1:{  cout<<"Update Profile";break;}
+                case 1:{  updatecustomerprofile();break;}
                 //Enter code here
                 case 2: {printf("Display Schedule\n");              
                                     break;}
@@ -399,7 +405,6 @@ fstream fcustomer;
                     ent
                     showcustomerMenu();
                 }
-                //cout<<"admin"<<" "<<a.password<<endl;
 }
 
 int main(){
