@@ -21,7 +21,7 @@ void addScheduleItem(){
         string tempLboyId[20];
         cout<<"Enter Day: ";
         cin>>tempDay;
-        cout<<"Enter Address of the Scheduled Laundry: ";
+        cout<<"Enter Hostel of the Scheduled Laundry: ";
         cin>>tempAdd;
         string answer="yes";
         int i=0;

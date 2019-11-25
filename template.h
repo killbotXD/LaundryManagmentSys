@@ -77,4 +77,29 @@ void is_firsttime_launch_customer(){
         file.close();
     }
 }
+void viewSchedule_admin(){
+    fstream fViewScheduleA;
+    scheduleitem viewItemA;
+    cout<<"**************View Schedule Menu**************"<<endl;
+    cout<<"1)Monday"<<endl;
+    cout<<"2)Tuesday"<<endl;
+    cout<<"3)Wednesday"<<endl;
+    cout<<"4)Thursday"<<endl;
+    cout<<"5)Friday"<<endl;
+    cout<<"6)Saturday"<<endl;
+    cout<<"7)Sunday"<<endl;
+    cout<<"Enter the day you want to see schedule : ";
+}
+void viewSchedule_customer(string Hostel){
+    fstream fViewScheduleC;
+    scheduleitem viewItemC;
+    fViewScheduleC.open("schedule.dat",ios::in);
+    fViewScheduleC.seekg(0);
+    cout<<"CURRENT SCHEDULE FOR YOUR HOSTEL IS:"<<endl;
+    while(!fViewScheduleC.eof()){
+        if(fViewScheduleC.eof())break;
+        fViewScheduleC.read((char*)&viewItemC,sizeof(viewItemC));
+        if(strcpy(viewItemC.add,Hostel.c_str())==0)cout<<viewItemC.day<<endl;
+    }
 
+}
