@@ -111,28 +111,38 @@ fstream fadmin;
 }
 
 void showlboyMenu(){
-    
+    int x;
    do{
-    //clrscr();  
+    clrscr();  
     cout<<"*****************LAUNDRY MENU************"<<endl;
     printf("Enter choice...\n");
             printf("1)Display Schedule\n");
             printf("2)Add Laundry\n");
             printf("3)Update Profile\n");
-            printf("4)Exit\n");
-            int x;
+            cout<<"4)Register Customer"<<endl;
+            printf("5)Exit\n");
             x=input();
             switch(x){
-                case 1:{ printf("Present Schedule is as follows :");break;}
+                case 1:{ printf("Present Schedule is as follows :");ent break;}
                 //Enter code here
-                case 2: do{
-                        {printf("Enter choice...\n");
-                        printf("1)Add Item\n");
-                        printf("2)Exit \n");
-                        int y;
+                case 2: {
+                    int y;
+                    do{
+                        clrscr();
+                        printf("Current laundry slip contains\n");
+                        //showSlip();
+                        cout<<"what do you want to do?"<<endl;
+                        printf("1)Add Items\n");
+                        cout<<"2)Edit Item"<<endl;
+                        cout<<"3)Delete Item"<<endl;
+                        cout<<"4)Place laundry"<<endl;
+                        printf("5)Exit \n");
                         y=input();
                         switch(y){
-                            case 1:{ printf("Choose Item to added\n");
+                            case 1:{ 
+                                    t:
+                                    clrscr();
+                                    printf("Choose Item to added\n");
                                     printf("1)Shrit\n"); 
                                     printf("2)T-Shrit\n");
                                     printf("3)Jeans\n");
@@ -142,27 +152,35 @@ void showlboyMenu(){
                                     printf("7)Suit\n");
                                     printf("8)Lower\n");
                                     printf("9)Shorts\n");
-                                    printf("10)Exit\n");
+                                    cout<<"10)none"<<endl;
                                     int z=input();
                                     switch(z){
-                                        case 1:{break;}
-                                        case 2:{break;}
-                                        case 3:{break;}
-                                        case 4:{break;}
-                                        case 5:{break;}
-                                        case 6:{break;}
-                                        case 7:{break;}
-                                        case 8:{break;}
-                                        case 9:{break;}
+                                        case 1:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 2:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 3:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 4:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 5:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 6:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 7:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 8:{cout<<"Enter Quantity"<<endl; ent break;}
+                                        case 9:{cout<<"Enter Quantity"<<endl; ent break;}
                                      
-                                    }break;}
-                                case 2:{cout<<endl<<"exit";break;}
+                                    }
+                                    cout<<"do you want to add again?";
+                                    char ans;
+                                    cin>>ans;
+                                    if(ans=='y')goto t;
+                                    
+                                    break;}
+                                case 2:{cout<<"Edit Item";break;}
+                                case 3:{cout<<"Delete Item"<<endl; ent break;}
+                                case 4:{cout<<"Place Laundry"<<endl; ent break;}
+                                case 5: {cout<<"exit"; break;}
                                 }   
-                        }while(y!=2);
-                break;}
-                        
-                case 3: {printf("Update"); break;}
-                case 4: {printf("Add customer"); break;}
+                        }while(y!=5);
+                break;}   
+                case 3: {printf("Update\n"); ent break;}
+                case 4: {printf("Add customer\n"); ent break;}
                 //Enter code here
                 case 5: {  break;}
             }
