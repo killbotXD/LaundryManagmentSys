@@ -1,6 +1,6 @@
 #include<iostream>
 #include<fstream>
-#include<conio.h>
+//#include<conio.h>
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -9,7 +9,7 @@
 #include "lboy.h"
 using namespace std;
 
-#define ent {cout<<"press enter..."<<endl; getch();}
+#define ent {cout<<"press enter..."<<endl; getchar();}
 void gotoxy(int x,int y)	
 {
 	printf("%c[%d;%df",0x1B,y,x);

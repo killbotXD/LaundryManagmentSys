@@ -90,7 +90,7 @@ void editScheduleItem(){
         case 7:{cout<<"Sunday"<<endl; ent break;}
         case 8:{cout<<"Exit"<<endl;  break;}
 
-    }}while(inpEdit!=8)
+    }}while(inpEdit!=8);
 }
 void updateSchedule(){
     int inpUpdateSchedule;
@@ -200,7 +200,7 @@ fstream fadmin;
                 fadmin.seekg(0);
                 while(!fadmin.eof()){
                     fadmin.read((char*)&a,sizeof(a));
-                    //cout<<a.id<<" id "<<tempid<<endl;
+                    cout<<a.id<<" id "<<tempid<<endl;
                     if(strcmp(a.id,tempid.c_str())==0){cout<<"User Found!!"<<endl;break;}
 
                 }
@@ -217,6 +217,73 @@ fstream fadmin;
                 //cout<<"admin"<<" "<<a.password<<endl;
                 
 }
+void addItem()
+{
+    t:
+    clrscr();
+                                    
+    printf("Choose Item to added\n");
+    printf("1)Shrit\n"); 
+    printf("2)T-Shrit\n");
+    printf("3)Jeans\n");
+    printf("4)Trouser\n");
+    printf("5)Bed sheet\n");
+    printf("6)Towel\n");
+    printf("7)Suit\n");
+    printf("8)Lower\n");
+    printf("9)Shorts\n");
+    cout<<"10)none"<<endl;
+    int z=input();
+    switch(z){
+        case 1:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 2:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 3:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 4:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 5:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 6:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 7:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 8:{cout<<"Enter Quantity"<<endl; ent break;}
+        case 9:{cout<<"Enter Quantity"<<endl; ent break;}
+                                     
+    }
+    cout<<"do you want to add again?";
+    char ans;
+    cin>>ans;
+    if(ans=='y')goto t;
+}
+
+void addCustomer()
+{
+    
+                cout<<"**************Sign UP**************"<<endl;
+                fstream fnewlboy;
+                lboy newLboy;
+                string temppwd,tmpusername,tmpid;
+                cout<<"Enter new Id: ";
+                cin>>tmpid;
+                fnewlboy.open("lboy.dat",ios::in);
+                fnewlboy.seekg(0);
+                while(!fnewlboy.eof()){
+                    fnewlboy.read((char*)&newLboy,sizeof(lboy));
+
+                    if(strcmp(newLboy.id,tmpid.c_str())==0){cout<<"User already exists... Try another Id!!"<<endl;
+                    break;}
+
+                }
+                fnewlboy.close();
+                if(strcmp(newLboy.id,tmpid.c_str())!=0){
+                    strcpy(newLboy.id,tmpid.c_str());
+                    cout<<"Enter Username: ";
+                    cin>>tmpusername;
+                    strcpy(newLboy.username,tmpusername.c_str());
+                    cout<<"Enter Password:";
+                    cin>>temppwd;
+                    strcpy(newLboy.password,temppwd.c_str());
+                    fnewlboy.open("admins.dat",ios::out|ios::app);
+                    fnewlboy.write((char*)&newLboy,sizeof(lboy));
+                    fnewlboy.close();
+                }
+}
 
 void showlboyMenu(){
     int x;
@@ -232,7 +299,7 @@ void showlboyMenu(){
             x=input();
             switch(x){
                 case 1:{ printf("Present Schedule is as follows :");ent break;}
-                //Enter code here
+                //displaySchedule();
                 case 2: {
                     int y;
                     do{
@@ -247,50 +314,21 @@ void showlboyMenu(){
                         printf("5)Exit \n");
                         y=input();
                         switch(y){
-                            case 1:{ 
-                                    t:
-                                    clrscr();
-                                    printf("Choose Item to added\n");
-                                    printf("1)Shrit\n"); 
-                                    printf("2)T-Shrit\n");
-                                    printf("3)Jeans\n");
-                                    printf("4)Trouser\n");
-                                    printf("5)Bed sheet\n");
-                                    printf("6)Towel\n");
-                                    printf("7)Suit\n");
-                                    printf("8)Lower\n");
-                                    printf("9)Shorts\n");
-                                    cout<<"10)none"<<endl;
-                                    int z=input();
-                                    switch(z){
-                                        case 1:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 2:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 3:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 4:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 5:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 6:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 7:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 8:{cout<<"Enter Quantity"<<endl; ent break;}
-                                        case 9:{cout<<"Enter Quantity"<<endl; ent break;}
-                                     
-                                    }
-                                    cout<<"do you want to add again?";
-                                    char ans;
-                                    cin>>ans;
-                                    if(ans=='y')goto t;
-                                    
-                                    break;}
-                                case 2:{cout<<"Edit Item";break;}
-                                case 3:{cout<<"Delete Item"<<endl; ent break;}
-                                case 4:{cout<<"Place Laundry"<<endl; ent break;}
-                                case 5: {cout<<"exit"; break;}
-                                }   
+                            case 1:{ addItem(); break;}
+                            case 2:{cout<<"Edit Item";break;}
+                            case 3:{cout<<"Delete Item"<<endl; ent break;}
+                            case 4:{cout<<"Place Laundry"<<endl; ent break;}
+                            case 5:{cout<<"exit"; break;}
+                            }   
                         }while(y!=5);
                 break;}   
                 case 3: {printf("Update\n"); ent break;}
-                case 4: {printf("Add customer\n"); ent break;}
+                case 4: {printf("Add customer\n");
                 //Enter code here
-                case 5: { exit(0); break;}
+                addCustomer();
+                ent break;}  
+                case 5: {printf("Settings\n");break;}
+                case 6: { exit(0); break;}
             }
    }while(x!=5);
 }
