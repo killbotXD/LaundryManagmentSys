@@ -1,12 +1,14 @@
 #include<iostream>
 #include<fstream>
-#include<conio.h>
+//#include<conio.h>
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<conio.h>
 #include "admin.h"
 #include "scheduleItem.h"
 #include "lboy.h"
+#include "customer.h"
 using namespace std;
 
 #define ent {cout<<"press enter..."<<endl; getch();}
