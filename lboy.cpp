@@ -192,13 +192,13 @@ void showlboyMenu(){
                             }   
                         }while(y!=5);
                 break;}   
-                case 3: {printf("Update\n"); ent break;}
-                case 4: {printf("Add customer\n");
+                //case 3: {printf("Update\n"); ent break;}
+                case 3: {printf("Add customer\n");
                 addCustomer();
                 ent break;}  
-                case 5: {exit(0); break;}
+                case 4: {exit(0); break;}
             }
-   }while(x!=5);
+   }while(x!=4);
 }
 void loginlboy(){
 fstream flboy;

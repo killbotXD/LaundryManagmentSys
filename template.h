@@ -1,10 +1,10 @@
 #include<iostream>
 #include<fstream>
-//#include<conio.h>
+#include<conio.h>
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
-//#include<conio.h>
+
 #include "admin.h"
 #include "scheduleItem.h"
 #include "lboy.h"
@@ -12,7 +12,7 @@
 #include "customer.h"
 using namespace std;
 
-#define ent {cout<<"press enter..."<<endl; getchar();}
+#define ent {cout<<"press enter..."<<endl; getch();}
 void gotoxy(int x,int y)	
 {
 	printf("%c[%d;%df",0x1B,y,x);
