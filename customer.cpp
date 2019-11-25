@@ -14,7 +14,7 @@ void showcustomerMenu(){
             switch(x){
                 case 1:{ ent break;}
                 //Enter code here
-                case 2: {printf("Display Schedule\n");              
+                case 2: {//take the name of the hostel as input in a string variable and then call viewSchedule_customer             
                            ent         break;}
                 case 3: {printf("Mark Laundry Received");ent break;}
                 //Enter code here
