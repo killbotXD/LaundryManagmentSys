@@ -63,6 +63,7 @@ if(answer=="y"||answer=="yes"||answer=="Y"||answer=="YES"){
     faddSI.write((char*)&schItem,sizeof(schItem));
     faddSI.close();
 }
+}
 void editScheduleItem(){
     int inpEdit;
     clrscr();
@@ -78,18 +79,18 @@ void editScheduleItem(){
     cout<<"Enter the day you want to edit: "<<endl;
     inpEdit=input();
     switch(inpEdit){
-        case 1:{cout<<"Monday"<<endl; ent break;}
+        case 1:{cout<<"Monday"<<endl;
+        
+         ent break;}
         case 2:{cout<<"Tuesday"<<endl; ent break;}
         case 3:{cout<<"Wednesday"<<endl; ent break;}
         case 4:{cout<<"Thursday"<<endl; ent break;}
         case 5:{cout<<"Friday"<<endl; ent break;}
         case 6:{cout<<"Saturday"<<endl; ent break;}
         case 7:{cout<<"Sunday"<<endl; ent break;}
-        case 1:{cout<<"Exit"<<endl;  break;}
+        case 8:{cout<<"Exit"<<endl;  break;}
 
     }
-}
-
 }
 void updateSchedule(){
     int inpUpdateSchedule;
