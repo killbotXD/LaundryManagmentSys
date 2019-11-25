@@ -256,32 +256,38 @@ void addCustomer()
 {
     
                 cout<<"**************Sign UP**************"<<endl;
-                fstream fnewlboy;
-                lboy newLboy;
-                string temppwd,tmpusername,tmpid;
+                fstream fnewcustomer;
+                customer newcustomer;
+                string temppwd,tmpusername,tmpid, temphostel, temproomnumber;
                 cout<<"Enter new Id: ";
                 cin>>tmpid;
-                fnewlboy.open("lboy.dat",ios::in);
-                fnewlboy.seekg(0);
-                while(!fnewlboy.eof()){
-                    fnewlboy.read((char*)&newLboy,sizeof(lboy));
+                fnewcustomer.open("customer.dat",ios::in);
+                fnewcustomer.seekg(0);
+                while(!fnewcustomer.eof()){
+                    fnewcustomer.read((char*)&newcustomer,sizeof(customer));
 
-                    if(strcmp(newLboy.id,tmpid.c_str())==0){cout<<"User already exists... Try another Id!!"<<endl;
+                    if(strcmp(newcustomer.id,tmpid.c_str())==0){cout<<"Customer already exists... Try another Id!!"<<endl;
                     break;}
 
                 }
-                fnewlboy.close();
-                if(strcmp(newLboy.id,tmpid.c_str())!=0){
-                    strcpy(newLboy.id,tmpid.c_str());
+                fnewcustomer.close();
+                if(strcmp(newcustomer.id,tmpid.c_str())!=0){
+                    strcpy(newcustomer.id,tmpid.c_str());
                     cout<<"Enter Username: ";
                     cin>>tmpusername;
-                    strcpy(newLboy.username,tmpusername.c_str());
+                    strcpy(newcustomer.username,tmpusername.c_str());
                     cout<<"Enter Password:";
                     cin>>temppwd;
-                    strcpy(newLboy.password,temppwd.c_str());
-                    fnewlboy.open("admins.dat",ios::out|ios::app);
-                    fnewlboy.write((char*)&newLboy,sizeof(lboy));
-                    fnewlboy.close();
+                    strcpy(newcustomer.password,temppwd.c_str());
+                    cout<<"Enter Hostel: ";
+                    cin>>temphostel;
+                    strcpy(newcustomer.hostel,temphostel.c_str());
+                    cout<<"Enter Room Number: ";
+                    cin>>temproomnumber;
+                    strcpy(newcustomer.roomnumber,temproomnumber.c_str());
+                    fnewcustomer.open("customer.dat",ios::out|ios::app);
+                    fnewcustomer.write((char*)&newcustomer,sizeof(customer));
+                    fnewcustomer.close();
                 }
 }
 
@@ -377,7 +383,6 @@ fstream flboy;
 
 void updatecustomerprofile()
 {
-    customer c;
 
 }
 
