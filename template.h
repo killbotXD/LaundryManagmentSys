@@ -99,7 +99,22 @@ void viewSchedule_customer(string Hostel){
     while(!fViewScheduleC.eof()){
         if(fViewScheduleC.eof())break;
         fViewScheduleC.read((char*)&viewItemC,sizeof(viewItemC));
-        if(strcpy(viewItemC.add,Hostel.c_str())==0)cout<<viewItemC.day<<endl;
+        if(strcmp(viewItemC.add,Hostel.c_str())==0)cout<<viewItemC.day<<endl;
+    }
+
+}
+void viewSchedule_lboy(string templboyId){
+    fstream fViewScheduleL;
+    scheduleitem viewItemL;
+    fViewScheduleL.open("schedule.dat",ios::in);
+    fViewScheduleL.seekg(0);
+    cout<<"CURRENT SCHEDULE FOR YOU IS:"<<endl;
+    cout<<"Day     -   Address"<<endl;
+    while(!fViewScheduleL.eof()){
+        if(fViewScheduleL.eof())break;
+        fViewScheduleL.read((char*)&viewItemL,sizeof(viewItemL));
+        for(int i=0;i<sizeof(viewItemL.lboyId)/sizeof(string);i++)if(strcmp(viewItemL.lboyId[i],templboyId.c_str())==0)cout<<viewItemL.day<<"     "<<viewItemL.add<<endl;
+        
     }
 
 }
