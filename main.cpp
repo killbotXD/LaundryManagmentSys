@@ -66,7 +66,7 @@ if(answer=="y"||answer=="yes"||answer=="Y"||answer=="YES"){
 }
 void editScheduleItem(){
     int inpEdit;
-    clrscr();
+    do{clrscr();
     cout<<"*****************Edit Schedule Menu*****************"<<endl;
     cout<<"1)Monday"<<endl;
     cout<<"2)Tuesday"<<endl;
@@ -90,7 +90,7 @@ void editScheduleItem(){
         case 7:{cout<<"Sunday"<<endl; ent break;}
         case 8:{cout<<"Exit"<<endl;  break;}
 
-    }
+    }}while(inpEdit!=8)
 }
 void updateSchedule(){
     int inpUpdateSchedule;
