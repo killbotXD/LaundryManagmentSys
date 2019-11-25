@@ -37,6 +37,7 @@ void addCustomer(){
 }
 void addItem()
 {
+    laundry launItem;
     t:
     clrscr();
                                     
@@ -52,23 +53,91 @@ void addItem()
     printf("9)Shorts\n");
     cout<<"10)none"<<endl;
     int z=input();
-    switch(z){
-        case 1:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 2:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 3:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 4:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 5:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 6:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 7:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 8:{cout<<"Enter Quantity"<<endl; ent break;}
-        case 9:{cout<<"Enter Quantity"<<endl; ent break;}
-                                     
-    }
+    int quan;
+    cout<<"Enter the Quantity to be added"<<endl; 
+        cin>>quan;
+        
+    if(z!=10)
+    launItem.lItem[z]=quan;
     cout<<"do you want to add again?";
     char ans;
     cin>>ans;
-    if(ans=='y')goto t;
+    //cout<<launItem.lItem[z];
+    if(ans=='y'|| ans=='Y')goto t;
 }
+
+void deleteItem()
+{
+    laundry launItem;
+    t:
+    clrscr();
+                                    
+    printf("Choose Item to be deleted\n");
+    printf("1)Shrit\n"); 
+    printf("2)T-Shrit\n");
+    printf("3)Jeans\n");
+    printf("4)Trouser\n");
+    printf("5)Bed sheet\n");
+    printf("6)Towel\n");
+    printf("7)Suit\n");
+    printf("8)Lower\n");
+    printf("9)Shorts\n");
+    cout<<"10)none"<<endl;
+    int z=input();
+    if(z!=10)
+    launItem.lItem[z]=0;
+    cout<<"do you want to delete more?";
+    char ans;
+    cin>>ans;
+    //cout<<launItem.lItem[z];
+    if(ans=='y'||ans=='Y')goto t;
+}
+
+void editItem()
+{
+    laundry launItem;
+    t:
+    clrscr();
+    printf("Choose Item whose quantity is to be changed\n");
+    printf("1)Shrit\n"); 
+    printf("2)T-Shrit\n");
+    printf("3)Jeans\n");
+    printf("4)Trouser\n");
+    printf("5)Bed sheet\n");
+    printf("6)Towel\n");
+    printf("7)Suit\n");
+    printf("8)Lower\n");
+    printf("9)Shorts\n");
+    cout<<"10)none"<<endl;
+    int z=input();
+    int newQuan;
+    cout<<"Enter the new quantity to be added";
+    cin>>newQuan;
+    if(z!=10)
+    launItem.lItem[z]=newQuan;
+    cout<<"do you want to edit more?";
+    char ans;
+    cin>>ans;
+    //cout<<launItem.lItem[z];
+    if(ans=='y'||ans=='Y')goto t;
+}
+
+int placeLaundry()
+{
+    int success=0;
+    cout<<"Are you sure you want to place laundry?";
+    string sure;
+    cin>>sure;
+    if(sure=="y" || sure=="yes" || sure=="YES" ||sure=="Y")
+    {
+        laundry rec;
+        rec.isRecieved=1;
+        success=1;
+
+    }
+    return success;
+}
+
 void showlboyMenu(){
     int x;
    do{
@@ -100,17 +169,31 @@ void showlboyMenu(){
                         cout<<"Enter any one of the choices: ";
                         y=input();
                         switch(y){
-                            case 1:{ addItem(); break;}
-                            case 2:{cout<<"Edit Item";break;}
-                            case 3:{cout<<"Delete Item"<<endl; ent break;}
-                            case 4:{cout<<"Place Laundry"<<endl; ent break;}
+                            case 1:{ 
+                                addItem(); 
+                                break;}
+                            case 2:{
+                                editItem;
+                                break;}
+                            case 3:{
+                                deleteItem; 
+                                 break;}
+                            case 4:{
+                                int succ=placeLaundry();
+                                if(succ==0)
+                                cout<<"Laundry not placed";
+                                else
+                                {
+                                    cout<<"Laundry placed successfully";
+                                }
+                                
+                              break;}
                             case 5:{cout<<"exit"; break;}
                             }   
                         }while(y!=5);
                 break;}   
                 case 3: {printf("Update\n"); ent break;}
                 case 4: {printf("Add customer\n");
-                //Enter code here
                 addCustomer();
                 ent break;}  
                 case 5: {exit(0); break;}
