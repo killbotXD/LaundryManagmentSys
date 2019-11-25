@@ -1,6 +1,7 @@
 class laundry{
     public:
-    int isRecieved=0;
+    int isReceived=0;
+    int isPlaced=0;
     int lItem[10];
     
 };

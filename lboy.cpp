@@ -131,7 +131,7 @@ int placeLaundry()
     if(sure=="y" || sure=="yes" || sure=="YES" ||sure=="Y")
     {
         laundry rec;
-        rec.isRecieved=1;
+        rec.isPlaced=1;
         success=1;
 
     }

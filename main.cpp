@@ -23,6 +23,10 @@ int main(){
             case 3:{
                 loginlboy();
                 break;}
+            case 4:{
+                cout<<"Thanks for visiting .... :)";
+                break;
+            }
         }
     ent
     }while (inp!=4);

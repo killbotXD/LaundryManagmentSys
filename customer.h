@@ -13,7 +13,9 @@ class customer: public user{
        // id="admin";
         strcpy(username,"customer");
          strcpy(password,"customer");
-          strcpy(mobile,"customer");
+          strcpy(mobile,"0123456789");
+         strcpy(hostel,"00");
+          strcpy(roomnumber,"000");
         // username="admin";
         // password="admin";
         // mobile="1234567890";

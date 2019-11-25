@@ -95,6 +95,7 @@ void viewSchedule_customer(string Hostel){
     scheduleitem viewItemC;
     fViewScheduleC.open("schedule.dat",ios::in);
     fViewScheduleC.seekg(0);
+    clrscr();
     cout<<"CURRENT SCHEDULE FOR YOUR HOSTEL IS:"<<endl;
     while(!fViewScheduleC.eof()){
         if(fViewScheduleC.eof())break;

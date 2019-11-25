@@ -5,22 +5,32 @@ void showcustomerMenu(){
     clrscr();  
     cout<<"*****************CUSTOMER MENU************"<<endl;
     printf("Enter choice...\n");
-            printf("1)Update Profile\n");
-            printf("2)Display Schedule\n");
-            printf("3)Mark Laundry Received\n");
-            printf("4)Exit\n");
+            printf("1)Display Schedule\n");
+            printf("2)Mark Laundry Received\n");
+            printf("3)Exit\n");
             cout<<"Enter Any one of the choices: ";
             x=input();
             switch(x){
-                case 1:{ ent break;}
-                //Enter code here
-                case 2: {//take the name of the hostel as input in a string variable and then call viewSchedule_customer             
-                           ent         break;}
-                case 3: {printf("Mark Laundry Received");ent break;}
-                //Enter code here
-                case 4: { exit(0);  break;}
+                case 1: {//take the name of the hostel as input in a string variable and then call viewSchedule_customer             
+                           ent 
+                           string temphostel;   
+                           cout<<"Enter Hostel: \n";
+                           cin>>temphostel;
+                           viewSchedule_customer(temphostel);
+                                break;}
+                case 2: {
+                    cout<<"Have yoou received the laundry ?(Y/N)";
+                    string tempanswer;
+                    cin>>tempanswer;
+                    if(tempanswer=="Y" || tempanswer=="y")
+                    {
+                        laundry rec;
+                        rec.isReceived=1;
+                    }
+                    ent break;}
+                case 3: { exit(0);  break;}
             }
-   }while(x!=4);
+   }while(x!=3);
 }
 
 void logincustomer(){
