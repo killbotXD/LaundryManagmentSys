@@ -15,10 +15,23 @@ void is_firsttime_launch(){
     }
     
 }
+void is_firsttime_launch_lboy(){
+    fstream file,fb;
+    lboy b;
+    file.open("datab.txt",ios::in);
+    if(file.fail()){
+        fb.open("lboy.dat",ios::out);
+        fb.write((char*)&b,sizeof(lboy));
+        fb.close();
+    }else{
+        file.close();
+    }
+}
+
 int lboyExists(string id){
     fstream flboy;
                 lboy b;
-                //is_firsttime_launch_lboy();
+                is_firsttime_launch_lboy();
                 flboy.open("lboy.dat",ios::in);
                 flboy.seekg(0);
                 while(!flboy.eof()){
@@ -251,10 +264,21 @@ void addItem()
     cin>>ans;
     if(ans=='y')goto t;
 }
-
+void is_firsttime_launch_customer(){
+    fstream file,fb;
+    customer b;
+    file.open("customer.dat",ios::in);
+    if(file.fail()){
+        fb.open("customer.dat",ios::out);
+        fb.write((char*)&b,sizeof(customer));
+        fb.close();
+    }else{
+        file.close();
+    }
+}
 void addCustomer()
 {
-    
+    is_firsttime_launch_customer();
                 cout<<"**************Sign UP**************"<<endl;
                 fstream fnewcustomer;
                 customer newcustomer;
@@ -302,6 +326,7 @@ void showlboyMenu(){
             printf("3)Update Profile\n");
             cout<<"4)Register Customer"<<endl;
             printf("5)Exit\n");
+            cout<<"Enter Any one of the choices: ";
             x=input();
             switch(x){
                 case 1:{ printf("Present Schedule is as follows :");ent break;}
@@ -318,6 +343,7 @@ void showlboyMenu(){
                         cout<<"3)Delete Item"<<endl;
                         cout<<"4)Place laundry"<<endl;
                         printf("5)Exit \n");
+                        cout<<"Enter any one of the choices: ";
                         y=input();
                         switch(y){
                             case 1:{ addItem(); break;}
@@ -333,23 +359,9 @@ void showlboyMenu(){
                 //Enter code here
                 addCustomer();
                 ent break;}  
-                case 5: {printf("Settings\n");break;}
-                case 6: { exit(0); break;}
+                case 5: {exit(0); break;}
             }
    }while(x!=5);
-}
-void is_firsttime_launch_lboy(){
-    fstream file,fb;
-    lboy b;
-    file.open("datab.txt",ios::in);
-    if(file.fail()){
-        cout<<"creating default lboy"<<endl;
-        fb.open("lboy.dat",ios::out);
-        fb.write((char*)&b,sizeof(lboy));
-        fb.close();
-    }else{
-        file.close();
-    }
 }
 
 
@@ -389,13 +401,14 @@ void updatecustomerprofile()
 void showcustomerMenu(){
     int x;
    do{
-    //clrscr();  
+    clrscr();  
     cout<<"*****************CUSTOMER MENU************"<<endl;
     printf("Enter choice...\n");
             printf("1)Update Profile\n");
             printf("2)Display Schedule\n");
             printf("3)Mark Laundry Received\n");
             printf("4)Exit\n");
+            cout<<"Enter Any one of the choices: ";
             x=input();
             switch(x){
                 case 1:{  updatecustomerprofile();break;}
@@ -404,25 +417,11 @@ void showcustomerMenu(){
                                     break;}
                 case 3: {printf("Mark Laundry Received"); break;}
                 //Enter code here
-                case 4: {  break;}
+                case 4: { exit(0);  break;}
             }
    }while(x!=4);
 }
-void is_firsttime_launch_customer(){
-    char c;
-    fstream file,fb;
-    customer b;
-    file.open("datac.txt",ios::in);
-    file>>c;
-    file.close();
-    if(c=='y'){
-        cout<<"creating default customer"<<endl;
-        file.open("datac.txt",ios::out);file<<'n';file.close();
-        fb.open("customer.dat",ios::out);
-        fb.write((char*)&b,sizeof(customer));
-        fb.close();
-    }
-}
+
 void logincustomer(){
 fstream fcustomer;
                 customer b;

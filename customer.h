@@ -1,7 +1,6 @@
 #include<iostream>
 #include<string.h>
 #include<stdio.h>
-#include "user.h"
 using namespace std;
 
 class customer: public user{
