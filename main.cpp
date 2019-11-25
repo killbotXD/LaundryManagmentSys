@@ -1,18 +1,19 @@
 #include "template.h"
 void is_firsttime_launch(){
-    char c;
     fstream file,fa;
     admin a;
-    file.open("data.txt",ios::in);
-    file>>c;
-    file.close();
-    if(c=='y'){
+    file.open("admins.dat",ios::in);
+    if(file.fail()){
         cout<<"creating default admin"<<endl;
-        file.open("data.txt",ios::out);file<<'n';file.close();
         fa.open("admins.dat",ios::out);
         fa.write((char*)&a,sizeof(admin));
         fa.close();
     }
+    else
+    {
+        file.close();
+    }
+    
 }
 void updateSchedule(){
     int inpUpdateSchedule;
@@ -212,18 +213,16 @@ void showlboyMenu(){
    }while(x!=5);
 }
 void is_firsttime_launch_lboy(){
-    char c;
     fstream file,fb;
     lboy b;
     file.open("datab.txt",ios::in);
-    file>>c;
-    file.close();
-    if(c=='y'){
+    if(file.fail()){
         cout<<"creating default lboy"<<endl;
-        file.open("datab.txt",ios::out);file<<'n';file.close();
         fb.open("lboy.dat",ios::out);
         fb.write((char*)&b,sizeof(lboy));
         fb.close();
+    }else{
+        file.close();
     }
 }
 
