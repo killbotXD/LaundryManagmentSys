@@ -1,4 +1,6 @@
 .logs
+.vscode
+customer.dat
 admins.dat
 lboy.dat
 main.exe
