@@ -14,6 +14,29 @@ void is_firsttime_launch(){
         fa.close();
     }
 }
+void updateSchedule(){
+    int inpUpdateSchedule;
+    do{
+        clrscr();
+        cout<<"***********************Update Schedule Menu***********************"<<endl;
+        cout<<"1)Add Schedule Item"<<endl;
+        cout<<"2)Edit Schedule Item"<<endl;
+        cout<<"3)Delete Schedule Item"<<endl;
+        cout<<"4)Exit"<<endl;
+        cout<<"Choose an Option:";
+        cin>>inpUpdateSchedule;
+        switch (inpUpdateSchedule)
+        {
+        case 1:{cout<<"Add"; ent 
+            break;}
+        case 2: {cout<<"Edit"; ent
+            break;}
+        case 3: {cout<<"Delete"; ent
+            break;}
+        case 4:{cout<<"Exit";}
+        }
+    }while(inpUpdateSchedule!=4);
+}
 void showAdminMenu(){
     int inpadmin;
    do{
@@ -27,7 +50,9 @@ void showAdminMenu(){
     cout<<"6)Exit"<<endl;
     inpadmin=input();
     switch(inpadmin){
-        case 1:{cout<<"Update Schedulle"<<endl;ent
+        case 1:{updateSchedule();
+        
+            ent
             break;
         }
         case 2:{  
@@ -77,7 +102,7 @@ void showAdminMenu(){
         case 5:{cout<<"Settings"<<endl;ent
             break;
             }
-        case 6: return;
+        case 6:{exit(0);return;}
     }
    }while(inpadmin!=6);
 }
@@ -182,7 +207,7 @@ void showlboyMenu(){
                 case 3: {printf("Update\n"); ent break;}
                 case 4: {printf("Add customer\n"); ent break;}
                 //Enter code here
-                case 5: {  break;}
+                case 5: { exit(0); break;}
             }
    }while(x!=5);
 }
