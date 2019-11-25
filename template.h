@@ -5,6 +5,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "admin.h"
+#include "scheduleItem.h"
 #include "lboy.h"
 using namespace std;
 
