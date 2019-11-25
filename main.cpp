@@ -63,7 +63,32 @@ if(answer=="y"||answer=="yes"||answer=="Y"||answer=="YES"){
     faddSI.write((char*)&schItem,sizeof(schItem));
     faddSI.close();
 }
+void editScheduleItem(){
+    int inpEdit;
+    clrscr();
+    cout<<"*****************Edit Schedule Menu*****************"<<endl;
+    cout<<"1)Monday"<<endl;
+    cout<<"2)Tuesday"<<endl;
+    cout<<"3)Wednesday"<<endl;
+    cout<<"4)Thursday"<<endl;
+    cout<<"5)Friday"<<endl;
+    cout<<"6)Saturday"<<endl;
+    cout<<"7)Sunday"<<endl;
+    cout<<"8)Exit"<<endl;
+    cout<<"Enter the day you want to edit: "<<endl;
+    inpEdit=input();
+    switch(inpEdit){
+        case 1:{cout<<"Monday"<<endl; ent break;}
+        case 2:{cout<<"Tuesday"<<endl; ent break;}
+        case 3:{cout<<"Wednesday"<<endl; ent break;}
+        case 4:{cout<<"Thursday"<<endl; ent break;}
+        case 5:{cout<<"Friday"<<endl; ent break;}
+        case 6:{cout<<"Saturday"<<endl; ent break;}
+        case 7:{cout<<"Sunday"<<endl; ent break;}
+        case 1:{cout<<"Exit"<<endl;  break;}
 
+    }
+}
 
 }
 void updateSchedule(){
@@ -84,7 +109,9 @@ void updateSchedule(){
         
             ent 
             break;}
-        case 2: {cout<<"Edit"; ent
+        case 2: {cout<<"Edit"; 
+            editScheduleItem();
+            ent
             break;}
         case 3: {cout<<"Delete"; ent
             break;}
