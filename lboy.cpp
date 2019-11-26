@@ -118,7 +118,6 @@ void editItem(laundry &launItem)
     cout<<"do you want to edit more?";
     char ans;
     cin>>ans;
-    //cout<<launItem.lItem[z];
     if(ans=='y'||ans=='Y')goto t;
 }
 
@@ -141,8 +140,7 @@ int placeLaundry(laundry& launItem)
 void showlboyMenu(lboy& b){
     int x;
     laundry launItem;
-    strcpy(launItem.id,b.id);
-    strcpy(launItem.username,b.username);
+    strcpy(launItem.lboyId,b.id);
    do{
     clrscr();  
     cout<<"*****************LAUNDRY MENU************"<<endl;
@@ -158,6 +156,10 @@ void showlboyMenu(lboy& b){
                 case 1:{ printf("Present Schedule is as follows :");ent break;}
                 //displaySchedule();
                 case 2: {
+                    cout<<"Enter your customer ID";
+                    char tempCusId[5];
+                    cin>>tempCusId;
+                    strcpy(launItem.cusId,tempCusId);
                     int y;
                     do{
                         clrscr();
@@ -195,7 +197,6 @@ void showlboyMenu(lboy& b){
                             }   
                         }while(y!=5);
                 break;}   
-                //case 3: {printf("Update\n"); ent break;}
                 case 3: {printf("Add customer\n");
                 addCustomer();
                 ent break;}  
@@ -214,7 +215,6 @@ fstream flboy;
                 flboy.seekg(0);
                 while(!flboy.eof()){
                     flboy.read((char*)&b,sizeof(b));
-                    //cout<<a.id<<" id "<<tempid<<endl;
                     if(strcmp(b.id,tempid.c_str())==0){cout<<"User Found!!"<<endl;break;}
 
                 }
@@ -228,5 +228,4 @@ fstream flboy;
                     ent
                     showlboyMenu(b);
                 }
-                //cout<<"admin"<<" "<<a.password<<endl;
 }

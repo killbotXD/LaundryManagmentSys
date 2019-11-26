@@ -9,12 +9,8 @@ class admin: public user{
     char mobile[10];
     admin(){
         strcpy(id,"admin");
-       // id="admin";
         strcpy(username,"admin");
-         strcpy(password,"admin");
-          strcpy(mobile,"admin");
-        // username="admin";
-        // password="admin";
-        // mobile="1234567890";
+        strcpy(password,"admin");
+        strcpy(mobile,"admin");
     }
 };

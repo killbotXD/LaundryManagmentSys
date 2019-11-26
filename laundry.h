@@ -3,6 +3,6 @@ class laundry{
     int isReceived=0;
     int isPlaced=0;
     int lItem[10];
-    char id[5],username[20];
+    char cusId[5],lboyId[5];
 };
 
