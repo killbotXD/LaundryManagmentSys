@@ -14,6 +14,19 @@ int lboyExists(string id){
                 return 0;
                 
 }
+void printScheduleMenu(){
+    cout<<"*****************Edit Schedule Menu*****************"<<endl;
+    cout<<"1)Monday"<<endl;
+    cout<<"2)Tuesday"<<endl;
+    cout<<"3)Wednesday"<<endl;
+    cout<<"4)Thursday"<<endl;
+    cout<<"5)Friday"<<endl;
+    cout<<"6)Saturday"<<endl;
+    cout<<"7)Sunday"<<endl;
+    cout<<"8)Exit"<<endl;
+    cout<<"Enter the day you want to edit: "<<endl;
+
+}
 void addScheduleItem(){
         fstream faddSI;
         scheduleitem schItem;
@@ -47,22 +60,44 @@ void addScheduleItem(){
             faddSI.close();
         }
 }
+void editSingleItem(scheduleitem listOfItems[10],int number){
+    int input;
+    gotoxy(10,0);cout<<"Current Item Looks Like"<<endl;
+    cout<<listOfItems[number].dayOfWeek<<" "<<listOfItems[number].add<<endl;
+    cout<<"List of Laundry Boys Assigned:";
+    for(int i=0;i<sizeof(listOfItems[number].lboyId)/sizeof(string);i++){
+        cout<<listOfItems[number].lboyId[i]<<" ";
+    }
+    cout<<"What do you want to change?"<<endl;
+    cout<<"1)Day"<<endl;
+    cout<<"2)Address"<<endl;
+    cout<<"3)list of laundry Boys"<<endl;
+    cout<<"4)Nothing. Exit."<<endl;
+    input=input();
+    switch(input){
+        case 1:{
+            
+            break;}
+        case 2:{break;}
+        case 3:{break;}
+        case 4:{break;}
+    }
+    
+}
 void editScheduleItem(){
-    int inpEdit;
+    int inpEdit,editNo;
+    string queryDayOfWeek;
+    scheduleitem listOfItems[10];
     do{clrscr();
-    cout<<"*****************Edit Schedule Menu*****************"<<endl;
-    cout<<"1)Monday"<<endl;
-    cout<<"2)Tuesday"<<endl;
-    cout<<"3)Wednesday"<<endl;
-    cout<<"4)Thursday"<<endl;
-    cout<<"5)Friday"<<endl;
-    cout<<"6)Saturday"<<endl;
-    cout<<"7)Sunday"<<endl;
-    cout<<"8)Exit"<<endl;
-    cout<<"Enter the day you want to edit: "<<endl;
+    printScheduleMenu();
     inpEdit=input();
     switch(inpEdit){
-        case 1:{cout<<"Monday"<<endl;
+        case 1:{
+        queryDayOfWeek="Monday";
+        listOfItems=viewSchedule_admin(queryDayOfWeek);
+        cout<<"enter the entry you want to edit: ";
+        editNo=input();
+
         
          ent break;}
         case 2:{cout<<"Tuesday"<<endl; ent break;}

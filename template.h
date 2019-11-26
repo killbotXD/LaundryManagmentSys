@@ -78,18 +78,30 @@ void is_firsttime_launch_customer(){
         file.close();
     }
 }
-void viewSchedule_admin(){
+scheduleitem* viewSchedule_admin(string inpdayOfWeek){
+    //limitation considering time and resources
+    int items=0;
     fstream fViewScheduleA;
     scheduleitem viewItemA;
-    cout<<"**************View Schedule Menu**************"<<endl;
-    cout<<"1)Monday"<<endl;
-    cout<<"2)Tuesday"<<endl;
-    cout<<"3)Wednesday"<<endl;
-    cout<<"4)Thursday"<<endl;
-    cout<<"5)Friday"<<endl;
-    cout<<"6)Saturday"<<endl;
-    cout<<"7)Sunday"<<endl;
-    cout<<"Enter the day you want to see schedule : ";
+    scheduleitem listOfItems[10];
+    fViewScheduleA.open("schedule.dat",ios::in);
+    fViewScheduleA.seekg(0);
+    clrscr();
+    cout<<"CURRENT SCHEDULE FOR "<<inpdayOfWeek<<" IS:"<<endl;
+    cout<<"Address          - Laundry Boy Id"<<endl;
+    while(!fViewScheduleA.eof()){
+        if(fViewScheduleA.eof()){fViewSchedule.close();break;}
+        fViewScheduleA.read((char*)&viewItemA,sizeof(viewItemA));
+        if(strcmp(viewItemA.dayOfWeek,inpdayOfWeek.c_str())==0&&items!=10){
+            listOfItems[items-1]=viewItemA;
+            gotoxy(0,items+2);cout<<viewItemA.add;
+            gotoxy(19,items+2);for(int i=0;i<sizeof(viewItemA.lboyId)/sizeof(string);i++)cout<<viewItemA.lboyId[i]<<" ";
+            items++;
+        }
+        else if(items==10){fViewSchedule.close();break;}
+    }
+retutn listOfItems;
+    
 }
 void viewSchedule_customer(string Hostel){
     fstream fViewScheduleC;
