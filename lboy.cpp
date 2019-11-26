@@ -35,9 +35,9 @@ void addCustomer(){
                     fnewcustomer.close();
                 }
 }
-void addItem()
+void addItem(laundry &launItem)
 {
-    laundry launItem;
+    //laundry launItem;
     t:
     clrscr();
                                     
@@ -66,9 +66,9 @@ void addItem()
     if(ans=='y'|| ans=='Y')goto t;
 }
 
-void deleteItem()
+void deleteItem(laundry &launItem)
 {
-    laundry launItem;
+    //laundry launItem;
     t:
     clrscr();
                                     
@@ -93,9 +93,9 @@ void deleteItem()
     if(ans=='y'||ans=='Y')goto t;
 }
 
-void editItem()
+void editItem(laundry &launItem)
 {
-    laundry launItem;
+    //laundry launItem;
     t:
     clrscr();
     printf("Choose Item whose quantity is to be changed\n");
@@ -122,7 +122,7 @@ void editItem()
     if(ans=='y'||ans=='Y')goto t;
 }
 
-int placeLaundry()
+int placeLaundry(laundry& launItem)
 {
     int success=0;
     cout<<"Are you sure you want to place laundry?";
@@ -138,17 +138,20 @@ int placeLaundry()
     return success;
 }
 
-void showlboyMenu(){
+void showlboyMenu(lboy& b){
     int x;
+    laundry launItem;
+    strcpy(launItem.id,b.id);
+    strcpy(launItem.username,b.username);
    do{
     clrscr();  
     cout<<"*****************LAUNDRY MENU************"<<endl;
     printf("Enter choice...\n");
             printf("1)Display Schedule\n");
             printf("2)Add Laundry\n");
-            printf("3)Update Profile\n");
-            cout<<"4)Register Customer"<<endl;
-            printf("5)Exit\n");
+            //printf("3)Update Profile\n");
+            cout<<"3)Register Customer"<<endl;
+            printf("4)Exit\n");
             cout<<"Enter Any one of the choices: ";
             x=input();
             switch(x){
@@ -170,16 +173,16 @@ void showlboyMenu(){
                         y=input();
                         switch(y){
                             case 1:{ 
-                                addItem(); 
+                                addItem(launItem); 
                                 break;}
                             case 2:{
-                                editItem;
+                                editItem(launItem);
                                 break;}
                             case 3:{
-                                deleteItem; 
+                                deleteItem(launItem); 
                                  break;}
                             case 4:{
-                                int succ=placeLaundry();
+                                int succ=placeLaundry(launItem);
                                 if(succ==0)
                                 cout<<"Laundry not placed";
                                 else
@@ -223,7 +226,7 @@ fstream flboy;
                 if(strcmp(b.password,temppwd.c_str())==0){
                     cout<<"Password match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
                     ent
-                    showlboyMenu();
+                    showlboyMenu(b);
                 }
                 //cout<<"admin"<<" "<<a.password<<endl;
 }

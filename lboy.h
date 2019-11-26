@@ -11,7 +11,7 @@ class lboy: public user{
         strcpy(id,"lboy");
        // id="admin";
         strcpy(username,"lboy");
-         strcpy(password,"lboy");
+        strcpy(password,"lboy");
           
         // username="admin";
         // password="admin";
