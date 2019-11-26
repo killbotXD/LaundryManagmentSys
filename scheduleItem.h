@@ -6,7 +6,8 @@ using namespace std;
 class scheduleitem{
  public:
     char add[50];
+    char dayOfWeek[10];
     char lboyId[20][20];
-    char day[10];
+    
 
 };

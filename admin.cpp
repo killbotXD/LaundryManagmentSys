@@ -37,7 +37,7 @@ void addScheduleItem(){
         cout<<endl<<"Confirm add Schedule Item?";
         cin>>answer;
         if(answer=="y"||answer=="yes"||answer=="Y"||answer=="YES"){
-            strcpy(schItem.day,tempDay.c_str());
+            strcpy(schItem.dayOfWeek,tempDay.c_str());
             for(i=0;i<sizeof(tempLboyId)/sizeof(string);i++){
                 strcpy(schItem.lboyId[i],tempLboyId[i].c_str());
             }
