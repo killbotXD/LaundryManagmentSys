@@ -9,6 +9,7 @@
 #include "lboy.h"
 #include "laundry.h"
 #include "customer.h"
+#include <time.h> 
 using namespace std;
 
 #define ent {cout<<"press enter..."<<endl; getch();}

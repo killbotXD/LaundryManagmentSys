@@ -123,6 +123,7 @@ void editItem(laundry &launItem)
 
 int placeLaundry(laundry& launItem)
 {
+    fstream fplaceLaundry;
     int success=0;
     cout<<"Are you sure you want to place laundry?";
     string sure;
@@ -134,6 +135,13 @@ int placeLaundry(laundry& launItem)
         success=1;
 
     }
+    time_t curtime; 
+    time(&curtime);
+    strcpy(launItem.curTime,ctime(&curtime));
+    fplaceLaundry.open("laundry.dat",ios::out|ios::app);
+    
+    fplaceLaundry.write((char*)&launItem,sizeof(launItem));
+    fplaceLaundry.close();
     return success;
 }
 
