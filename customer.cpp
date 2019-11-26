@@ -1,6 +1,6 @@
 
 void showcustomerMenu(customer& b){
-    fstream flaundry;
+    fstream flaundry, fnewlaundry;
 
     int x;
    do{
@@ -23,7 +23,9 @@ void showcustomerMenu(customer& b){
                 case 2: { 
                     laundry templaundry;
                     flaundry.open("laundry.dat",ios::in);
+                    fnewlaundry.open("temp.dat",ios::out); 
                     flaundry.seekg(0);
+                    fnewlaundry.seekg(0);
                     while(!flaundry.eof()){
                         if(flaundry.eof())break;
                         flaundry.read((char*)&templaundry,sizeof(templaundry));
@@ -36,14 +38,24 @@ void showcustomerMenu(customer& b){
                             if(tempanswer=="Y" || tempanswer=="y")
                             {
                                 templaundry.isReceived=1;
-                                flaundry.seekg(-sizeof(laundry),ios::cur);
-                                flaundry.write((char*)&templaundry,sizeof(templaundry));
+                                fnewlaundry.write((char*)&templaundry,sizeof(templaundry));
 
                             }
-                            ent break;
+                            else
+                            {
+                                fnewlaundry.write((char*)&templaundry,sizeof(templaundry));
+                            }
+                            
+                        }
+                        else {
+                            fnewlaundry.write((char*)&templaundry,sizeof(templaundry));
                         }
                         }
+                        remove("laundry.dat");
+                        rename("temp.dat","laundry.dat");
                         flaundry.close();
+                        fnewlaundry.close();
+                        ent break;
                     }
                 case 3: { exit(0);  break;}
             }
