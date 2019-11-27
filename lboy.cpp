@@ -35,13 +35,14 @@ void addCustomer(){
                     fnewcustomer.close();
                 }
 }
+
 void addItem(laundry &launItem)
 {
     //laundry launItem;
     t:
     clrscr();
                                     
-    printf("Choose Item to added\n");
+    printf("Choose Item to be added\n");
     printf("1)Shrit\n"); 
     printf("2)T-Shrit\n");
     printf("3)Jeans\n");
@@ -58,11 +59,11 @@ void addItem(laundry &launItem)
         cin>>quan;
         
     if(z!=10)
-    launItem.lItem[z]=quan;
+    launItem.lItemQty[z-1]=quan;
     cout<<"do you want to add again?";
     char ans;
     cin>>ans;
-    //cout<<launItem.lItem[z];
+    //cout<<launItem.lItemQty[z];
     if(ans=='y'|| ans=='Y')goto t;
 }
 
@@ -85,11 +86,11 @@ void deleteItem(laundry &launItem)
     cout<<"10)none"<<endl;
     int z=input();
     if(z!=10)
-    launItem.lItem[z]=0;
+    launItem.lItemQty[z-1]=0;
     cout<<"do you want to delete more?";
     char ans;
     cin>>ans;
-    //cout<<launItem.lItem[z];
+    //cout<<launItem.lItemQty[z];
     if(ans=='y'||ans=='Y')goto t;
 }
 
@@ -114,7 +115,7 @@ void editItem(laundry &launItem)
     cout<<"Enter the new quantity to be added";
     cin>>newQuan;
     if(z!=10)
-    launItem.lItem[z]=newQuan;
+    launItem.lItemQty[z-1]=newQuan;
     cout<<"do you want to edit more?";
     char ans;
     cin>>ans;
@@ -147,8 +148,9 @@ int placeLaundry(laundry& launItem)
 
 void showlboyMenu(lboy& b){
     int x;
-    laundry launItem;
-    strcpy(launItem.lboyId,b.id);
+    laundry* launItem=new laundry;
+    for(int i=0;i<10;i++)launItem->lItemQty[i]=0;
+    strcpy(launItem->lboyId,b.id);
    do{
     clrscr();  
     cout<<"*****************LAUNDRY MENU************"<<endl;
@@ -161,18 +163,27 @@ void showlboyMenu(lboy& b){
             cout<<"Enter Any one of the choices: ";
             x=input();
             switch(x){
-                case 1:{ printf("Present Schedule is as follows :");ent break;}
-                //displaySchedule();
+                case 1:{
+                   if(scheduleExists()){
+                  viewSchedule_lboy(b.id);
+            }else{
+                cout<<"Schedule Currently Not Available"<<endl;
+            }
+                ent break;}
+              
                 case 2: {
-                    cout<<"Enter your customer ID";
-                    char tempCusId[5];
+                    cout<<"Enter your customer ID: ";
+                    string tempCusId;
                     cin>>tempCusId;
-                    strcpy(launItem.cusId,tempCusId);
+                    if(customerExists(tempCusId)){  strcpy(launItem->cusId,tempCusId.c_str());}
+                    else{cout<<"Customer does not exist."<<endl;ent
+                    break;}
+                  
                     int y;
                     do{
                         clrscr();
                         printf("Current laundry slip contains\n");
-                        //showSlip();
+                        showSlip(*launItem);
                         cout<<"what do you want to do?"<<endl;
                         printf("1)Add Items\n");
                         cout<<"2)Edit Item"<<endl;
@@ -183,27 +194,40 @@ void showlboyMenu(lboy& b){
                         y=input();
                         switch(y){
                             case 1:{ 
-                                addItem(launItem); 
+                                addItem(*launItem); 
                                 break;}
                             case 2:{
-                                editItem(launItem);
+                                if(sizeof(launItem)>0)
+                                    editItem(*launItem);
+                                else{
+                                    cout<<"Empty Slip"<<endl;ent 
+                                }
                                 break;}
                             case 3:{
-                                deleteItem(launItem); 
+                                if(sizeof(launItem)>0)
+                                    deleteItem(*launItem); 
+                                else{
+                                   cout<<"Empty Slip"<<endl;ent 
+                                }
+                                
                                  break;}
                             case 4:{
-                                int succ=placeLaundry(launItem);
-                                if(succ==0)
-                                cout<<"Laundry not placed";
+                                int succ=placeLaundry(*launItem);
+                                if(succ==0){
+   cout<<"Failure"<<endl;ent
+                                }
+                             
                                 else
                                 {
-                                    cout<<"Laundry placed successfully";
+                                    cout<<"Laundry placed successfully"<<endl;
+                                    ent
+                                    
                                 }
                                 
                               break;}
                             case 5:{cout<<"exit"; break;}
                             }   
-                        }while(y!=5);
+                        }while(y!=5&&y!=4);
                 break;}   
                 case 3: {printf("Add customer\n");
                 addCustomer();
@@ -228,12 +252,12 @@ fstream flboy;
                 }
                 if(strcmp(b.id,tempid.c_str())!=0){cout<<"User not Found!!"<<endl;return;}
                 flboy.close();
-                
-                cout<<"Enter the password: ";
-                cin>>temppwd;
+                temppwd=inpPassword(strlen(b.password));
                 if(strcmp(b.password,temppwd.c_str())==0){
-                    cout<<"Password match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
+                    cout<<"\nPassword match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
                     ent
                     showlboyMenu(b);
-                }
+                }else{
+                    cout<<"\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!"<<endl;
+ent                }
 }

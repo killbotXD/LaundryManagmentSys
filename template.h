@@ -38,6 +38,18 @@ else
 }while(i==0);
    return 0;
 }
+char *inpPassword(int passleng){
+    cout<<"Enter your password : ";   int n=0;
+             char *p=new char[203];char ch;
+while(n<passleng){
+ch=getch();
+cout<<"*";
+p[n]=ch;
+n++;
+}
+fflush(stdin);
+return p;
+}
 void is_firsttime_launch_admin(){
     fstream file,fa;
     admin a;
@@ -78,29 +90,30 @@ void is_firsttime_launch_customer(){
         file.close();
     }
 }
-scheduleitem* viewSchedule_admin(string inpdayOfWeek){
+void viewSchedule_admin(string inpdayOfWeek){
     //limitation considering time and resources
     int items=0;
     fstream fViewScheduleA;
     scheduleitem viewItemA;
-    scheduleitem listOfItems[10];
+    scheduleitem *listOfItems= new scheduleitem[10];
     fViewScheduleA.open("schedule.dat",ios::in);
     fViewScheduleA.seekg(0);
     clrscr();
     cout<<"CURRENT SCHEDULE FOR "<<inpdayOfWeek<<" IS:"<<endl;
     cout<<"Address          - Laundry Boy Id"<<endl;
     while(!fViewScheduleA.eof()){
-        if(fViewScheduleA.eof()){fViewSchedule.close();break;}
+        if(fViewScheduleA.eof()){fViewScheduleA.close();break;}
         fViewScheduleA.read((char*)&viewItemA,sizeof(viewItemA));
         if(strcmp(viewItemA.dayOfWeek,inpdayOfWeek.c_str())==0&&items!=10){
             listOfItems[items-1]=viewItemA;
-            gotoxy(0,items+2);cout<<viewItemA.add;
-            gotoxy(19,items+2);for(int i=0;i<sizeof(viewItemA.lboyId)/sizeof(string);i++)cout<<viewItemA.lboyId[i]<<" ";
+            gotoxy(0,items+3);cout<<viewItemA.add;
+            gotoxy(19,items+3);for(int i=0;i<sizeof(viewItemA.lboyId)/sizeof(string);i++)cout<<viewItemA.lboyId[i]<<" ";
+            cout<<endl;
             items++;
         }
-        else if(items==10){fViewSchedule.close();break;}
+        else if(items==10){fViewScheduleA.close();break;}
     }
-retutn listOfItems;
+
     
 }
 void viewSchedule_customer(string Hostel){
@@ -109,13 +122,21 @@ void viewSchedule_customer(string Hostel){
     fViewScheduleC.open("schedule.dat",ios::in);
     fViewScheduleC.seekg(0);
     clrscr();
-    cout<<"CURRENT SCHEDULE FOR YOUR HOSTEL IS:"<<endl;
+    cout<<"CURRENT SCHEDULE FOR "<<Hostel<<" HOSTEL IS:"<<endl;
     while(!fViewScheduleC.eof()){
         if(fViewScheduleC.eof())break;
         fViewScheduleC.read((char*)&viewItemC,sizeof(viewItemC));
         if(strcmp(viewItemC.add,Hostel.c_str())==0)cout<<viewItemC.dayOfWeek<<endl;
     }
 ent
+}
+char itemsOfLList[9][10]={"Shirt","T-Shirt","Jeans","Trousers","Bed Sheet","Towel","Suit","Lower","Shorts"};
+
+void showSlip(laundry& templaundryitem){
+    cout<<"Item";gotoxy(15,1);cout<<"-";gotoxy(40,1);cout<<"Qty"<<endl;
+    for(int i=0;i<9;i++){
+      cout<<itemsOfLList[i];gotoxy(15,i+2);cout<<"-";gotoxy(40,i+2);cout<<templaundryitem.lItemQty[i]<<endl;
+    }
 }
 void viewSchedule_lboy(string templboyId){
     fstream fViewScheduleL;

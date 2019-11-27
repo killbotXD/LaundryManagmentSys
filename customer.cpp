@@ -18,7 +18,13 @@ void showcustomerMenu(customer& b){
                            string temphostel;   
                            cout<<"Enter Hostel: \n";
                            cin>>temphostel;
-                           viewSchedule_customer(temphostel);
+                           if(scheduleExists()){
+                                viewSchedule_customer(temphostel);
+                           }else{
+                               cout<<"Schedule Currently Not Available"<<endl;
+                               ent
+                           }
+                           
                                 break;}
                 case 2: { 
                     laundry templaundry;
@@ -30,8 +36,9 @@ void showcustomerMenu(customer& b){
                         if(flaundry.eof())break;
                         flaundry.read((char*)&templaundry,sizeof(templaundry));
                         if(strcmp(templaundry.cusId,b.id)==0)
-                        { 
-                            clrscr();
+                        { clrscr();
+                            showSlip(templaundry);ent
+                           
                             cout<<"Have you received the laundry";
                             string tempanswer;
                             cin>>tempanswer;
@@ -51,8 +58,9 @@ void showcustomerMenu(customer& b){
                             fnewlaundry.write((char*)&templaundry,sizeof(templaundry));
                         }
                         }
-                        remove("laundry.dat");
-                        rename("temp.dat","laundry.dat");
+                        int val1=remove("laundry.dat");
+                        int val2=rename("temp.dat","laundry.dat");
+                       // if(val1&&val2){cout<<"success";ent}
                         flaundry.close();
                         fnewlaundry.close();
                         ent break;
@@ -79,11 +87,14 @@ void logincustomer(){
                     if(strcmp(b.id,tempid.c_str())!=0){cout<<"User not Found!!"<<endl;return;}
                     fcustomer.close();
                     
-                    cout<<"Enter the password: ";
-                    cin>>temppwd;
+                    temppwd=inpPassword(strlen(b.password));
                     if(strcmp(b.password,temppwd.c_str())==0){
-                        cout<<"Password match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
+                        cout<<"\nPassword match"<<endl<<"Welcome "<<b.username<<"!!"<<endl; 
                         ent
                         showcustomerMenu(b);
+                    }else
+                    {
+                        cout<<"\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!"<<endl;
                     }
+                    
 }
