@@ -71,11 +71,12 @@ void showcustomerMenu(customer &b)
                     fnewlaundry.write((char *)&templaundry, sizeof(templaundry));
                 }
             }
-            int val1 = remove("laundry.dat");
-            int val2 = rename("temp.dat", "laundry.dat");
+
             // if(val1&&val2){cout<<"success";ent}
             flaundry.close();
             fnewlaundry.close();
+            int val1 = remove("laundry.dat");
+            int val2 = rename("temp.dat", "laundry.dat");
             ent break;
         }
         case 3:
