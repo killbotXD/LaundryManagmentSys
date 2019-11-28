@@ -558,7 +558,7 @@ void editScheduleItem()
     } while (inpEdit != 8);
 }
 
-void updateSchedule()
+void updateScheduleMenu()
 {
     int inpUpdateSchedule;
     do
@@ -620,7 +620,7 @@ void showAdminMenu()
         {
         case 1:
         {
-            updateSchedule();
+            updateScheduleMenu();
 
             ent break;
         }
