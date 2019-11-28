@@ -4,11 +4,11 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "admin.h"
-#include "scheduleItem.h"
-#include "lboy.h"
-#include "laundry.h"
-#include "customer.h"
+#include "Users/admin.h"
+#include "Others/scheduleItem.h"
+#include "Users/lboy.h"
+#include "Others/laundry.h"
+#include "Users/customer.h"
 #include <time.h>
 using namespace std;
 
