@@ -106,7 +106,7 @@ void addlboy()
         cout << "Enter Password:";
         cin >> temppwd;
         strcpy(newlboy.password, temppwd.c_str());
-        fnewlboy.open("customer.dat", ios::out | ios::app);
+        fnewlboy.open("lboy.dat", ios::out | ios::app);
         fnewlboy.write((char *)&newlboy, sizeof(lboy));
         fnewlboy.close();
         cout << "Registration Succesfull!!" << endl;
