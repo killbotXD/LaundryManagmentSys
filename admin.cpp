@@ -125,7 +125,7 @@ void addScheduleItem()
     cin >> tempAdd;
     string answer = "yes";
     int i = 0;
-    while (answer == "y" || answer == "yes" || answer == "Y" || answer == "YES")
+    while (answer == "y" || answer == "yes" || answer == "Y" || answer == "YES"&&sizeof(tempLboyId)>0)
     {
         cout << "Enter Laundry Boy Id to Be assigned: ";
         cin >> tempId;
@@ -164,17 +164,18 @@ void editSingleItem(scheduleitem listOfItems[], int number)
 {
 
     int inputHere;
-    string dayCurrent = listOfItems[number - 1].dayOfWeek;
+    scheduleitem curr;
+    curr.cpscheduleitem(listOfItems[number-2]);
 
 t:
     clrscr();
     gotoxy(30, 0);
-    cout << "Current Item Looks Like" << endl;
-    cout << listOfItems[number - 1].dayOfWeek << " " << listOfItems[number - 1].add << endl;
+    cout << "Current Item Looks Like" << endl<<endl;
+    cout << listOfItems[number-2].dayOfWeek << " " << listOfItems[number-2].add << endl;
     cout << "List of Laundry Boys Assigned:";
-    for (int i = 0; i < sizeof(listOfItems[number - 1].lboyId) / sizeof(string); i++)
+    for (int i = 0; i < sizeof(listOfItems[number-2].lboyId) / sizeof(string); i++)
     {
-        cout << listOfItems[number - 1].lboyId[i] << " ";
+        cout << listOfItems[number-2].lboyId[i] << " ";
     }
     cout << endl
          << endl;
@@ -192,7 +193,7 @@ t:
         string newday;
         cout << "Enter the new Day: ";
         cin >> newday;
-        strcpy(listOfItems[number - 1].dayOfWeek, newday.c_str());
+        strcpy(listOfItems[number-2].dayOfWeek, newday.c_str());
         break;
     }
     case 2:
@@ -200,7 +201,7 @@ t:
         cout << "Enter the new address: ";
         string newadd;
         cin >> newadd;
-        strcpy(listOfItems[number - 1].add, newadd.c_str());
+        strcpy(listOfItems[number-2].add, newadd.c_str());
         break;
     }
     case 3:
@@ -208,14 +209,14 @@ t:
         cout << "Enter Id laundry boy which you want to edit: ";
         string editId;
         cin >> editId;
-        for (int i = 0; i < sizeof(listOfItems[number - 1].lboyId) / sizeof(string); i++)
+        for (int i = 0; i < sizeof(listOfItems[number-2].lboyId) / sizeof(string); i++)
         {
-            if (strcmp(editId.c_str(), listOfItems[number - 1].lboyId[i]) == 0)
+            if (strcmp(editId.c_str(), listOfItems[number-2].lboyId[i]) == 0)
             {
                 cout << "Enter the new Id(leave blank if you want to relieve the laundry boy): ";
                 string newid;
                 cin >> newid;
-                strcpy(listOfItems[number - 1].lboyId[i], newid.c_str());
+                strcpy(listOfItems[number-2].lboyId[i], newid.c_str());
             }
         }
         break;
@@ -228,16 +229,17 @@ t:
         fileOutSch.open("temp2.dat", ios::out | ios::app);
         fileEditSch.open("schedule.dat", ios::in);
         fileEditSch.seekg(0);
-        while (!fileEditSch.eof())
+        while (fileEditSch.read((char *)&newScha, sizeof(newScha)))
         {
             if (fileEditSch.eof())
                 break;
-            fileEditSch.read((char *)&newScha, sizeof(newScha));
-            if (strcmp(newScha.dayOfWeek, dayCurrent.c_str()) == 0)
+            
+            if (curr.match(newScha))
             {
                 for (int i = 0; i < sizeof(*listOfItems) / sizeof(scheduleitem); i++)
                 {
-                    fileOutSch.write((char *)&listOfItems[i], sizeof(listOfItems[i]));
+                    //cout<<listOfItems[i-1].add;ent
+                    fileOutSch.write((char *)&listOfItems[i-1], sizeof(listOfItems[i-1]));
                 }
             }
             else
@@ -245,6 +247,8 @@ t:
                 fileOutSch.write((char *)&newScha, sizeof(newScha));
             }
         }
+        fileOutSch.close();
+        fileEditSch.close();
         remove("schedule.dat");
         rename("temp2.dat", "schedule.dat");
         cout << "Edit Sucesfull" << endl;
@@ -258,6 +262,56 @@ t:
     if (inputHere != 4 && inputHere != 5)
         goto t;
 }
+void queryProcessor(string queryDayOfWeek){
+    int editNo;
+    scheduleitem *listOfItems = new scheduleitem[10];
+              {
+                int items = 0;
+                fstream fViewScheduleA;
+                scheduleitem viewItemA;
+                fViewScheduleA.open("schedule.dat", ios::in);
+                fViewScheduleA.seekg(0);
+                clrscr();
+                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
+                cout << "Address          - Laundry Boy Id" << endl;
+                while (fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA)))
+                {
+                    if (fViewScheduleA.eof())
+                    {
+                        fViewScheduleA.close();
+                        break;
+                    }
+                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
+                    {
+                        
+                        listOfItems[items-1].cpscheduleitem(viewItemA);
+                        gotoxy(0, items + 3);
+                        cout << viewItemA.add;
+                        gotoxy(19, items + 3);
+                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
+                            cout << viewItemA.lboyId[i] << " ";
+                        cout << endl;
+                        items++;
+                    }
+                    else if (items == 10)
+                    {
+                        fViewScheduleA.close();
+                        break;
+                    }
+                }if(items ==0){
+                    cout<<"Empty!!!" ;
+                    Sleep(1);
+                    return;
+                }
+            }
+            // listOfItems=viewSchedule_admin(queryDayOfWeek);
+            // cout << listOfItems[0].add;
+            // ent
+                    cout
+                << "enter the entry you want to edit: ";
+            editNo = input();
+            editSingleItem(listOfItems, editNo);
+}
 void editScheduleItem()
 {
     int inpEdit, editNo;
@@ -268,95 +322,22 @@ void editScheduleItem()
     {
         clrscr();
         printScheduleMenu();
+        cout<<"8)Exit"<<endl;
         inpEdit = input();
         switch (inpEdit)
         {
         case 1:
         {
             queryDayOfWeek = "Monday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items - 1] = viewItemA;
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
-            // listOfItems=viewSchedule_admin(queryDayOfWeek);
-            cout << listOfItems[0].add;
-            ent
-                    cout
-                << "enter the entry you want to edit: ";
-            editNo = input();
-            editSingleItem(listOfItems, editNo);
+            queryProcessor(queryDayOfWeek);
 
             ent break;
         }
         case 2:
         {
             queryDayOfWeek = "Tuesday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items].cpscheduleitem(viewItemA);
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
+           queryProcessor(queryDayOfWeek);
+
             // listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -367,6 +348,7 @@ void editScheduleItem()
         {
             queryDayOfWeek = "Wednesday";
 
+             queryProcessor(queryDayOfWeek);
             //listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -376,41 +358,7 @@ void editScheduleItem()
         case 4:
         {
             queryDayOfWeek = "Thursday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items - 1] = viewItemA;
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
+           queryProcessor(queryDayOfWeek);
             //listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -420,41 +368,7 @@ void editScheduleItem()
         case 5:
         {
             queryDayOfWeek = "Friday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items - 1] = viewItemA;
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
+           queryProcessor(queryDayOfWeek);
             // listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -464,41 +378,7 @@ void editScheduleItem()
         case 6:
         {
             queryDayOfWeek = "Saturday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items - 1] = viewItemA;
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
+           queryProcessor(queryDayOfWeek);
             //listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -508,41 +388,7 @@ void editScheduleItem()
         case 7:
         {
             queryDayOfWeek = "Sunday";
-            {
-                int items = 0;
-                fstream fViewScheduleA;
-                scheduleitem viewItemA;
-                fViewScheduleA.open("schedule.dat", ios::in);
-                fViewScheduleA.seekg(0);
-                clrscr();
-                cout << "CURRENT SCHEDULE FOR " << queryDayOfWeek << " IS:" << endl;
-                cout << "Address          - Laundry Boy Id" << endl;
-                while (!fViewScheduleA.eof())
-                {
-                    if (fViewScheduleA.eof())
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                    fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
-                    if (strcmp(viewItemA.dayOfWeek, queryDayOfWeek.c_str()) == 0 && items != 10)
-                    {
-                        listOfItems[items - 1] = viewItemA;
-                        gotoxy(0, items + 3);
-                        cout << viewItemA.add;
-                        gotoxy(19, items + 3);
-                        for (int i = 0; i < sizeof(viewItemA.lboyId) / sizeof(string); i++)
-                            cout << viewItemA.lboyId[i] << " ";
-                        cout << endl;
-                        items++;
-                    }
-                    else if (items == 10)
-                    {
-                        fViewScheduleA.close();
-                        break;
-                    }
-                }
-            }
+           queryProcessor(queryDayOfWeek);
             //listOfItems=viewSchedule_admin(queryDayOfWeek);
             cout << "enter the entry you want to edit: ";
             editNo = input();
@@ -552,7 +398,7 @@ void editScheduleItem()
         case 8:
         {
             cout << "Exit" << endl;
-            break;
+            return;
         }
         }
     } while (inpEdit != 8);
@@ -622,7 +468,7 @@ void showAdminMenu()
         {
             updateScheduleMenu();
 
-            ent break;
+             break;
         }
         case 2:
         {
@@ -655,7 +501,7 @@ void showAdminMenu()
                 cout << "Enter Password:";
                 cin >> temppwd;
                 strcpy(newAdmin.password, temppwd.c_str());
-                cout << "Enter Mobile Number";
+                cout << "Enter Mobile number";
                 cin >> tmpmobile;
                 strcpy(newAdmin.mobile, tmpmobile.c_str());
                 fnewadmin.open("admins.dat", ios::out | ios::app);
@@ -670,6 +516,7 @@ void showAdminMenu()
             int querydayinp;
             clrscr();
             printScheduleMenu();
+            cout<<"8)Exit"<<endl;
             cin >> querydayinp;
             viewSchedule_admin(listOfDays[querydayinp - 1]);
             cout << endl;

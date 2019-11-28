@@ -10,6 +10,12 @@
 #include "Others/laundry.h"
 #include "Users/customer.h"
 #include <time.h>
+
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 using namespace std;
 
 #define ent                               \
@@ -121,14 +127,14 @@ void viewSchedule_admin(string inpdayOfWeek)
     clrscr();
     cout << "CURRENT SCHEDULE FOR " << inpdayOfWeek << " IS:" << endl;
     cout << "Address          - Laundry Boy Id" << endl;
-    while (!fViewScheduleA.eof())
+    while ( fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA)))
     {
         if (fViewScheduleA.eof())
         {
             fViewScheduleA.close();
             break;
         }
-        fViewScheduleA.read((char *)&viewItemA, sizeof(viewItemA));
+       
         if (strcmp(viewItemA.dayOfWeek, inpdayOfWeek.c_str()) == 0 && items != 10)
         {
             listOfItems[items - 1] = viewItemA;
