@@ -96,7 +96,7 @@ void logincustomer()
     customer b;
     string tempid,temppwd;
     is_firsttime_launch_customer();
-    cout << "enter your ID: ";
+     gotoxy(75,21);cout << "enter your ID: ";
     cin >> tempid;
     fcustomer.open("customer.dat", ios::in);
     fcustomer.seekg(0);
@@ -105,29 +105,29 @@ void logincustomer()
         fcustomer.read((char *)&b, sizeof(b));
         if (strcmp(b.id, tempid.c_str()) == 0)
         {
-            cout << "User Found!!" << endl;
+            gotoxy(75,22); cout << "User Found!!" << endl;
             break;
         }
     }
     if (strcmp(b.id, tempid.c_str()) != 0)
     {
-        cout << "User not Found!!" << endl;
+        gotoxy(75,22); cout << "User not Found!!" << endl;
         return;
     }
     fcustomer.close();
-    temppwd = inpPassword(strlen(b.password));
+     gotoxy(75,23);temppwd = inpPassword(strlen(b.password));
     if (!temppwd.empty()) {
 		temppwd.resize(strlen(b.password));
 	}
     if (strcmp(b.password, temppwd.c_str()) == 0)
     {
-        cout << "\nPassword match" << endl
-             << "Welcome " << b.username << "!!" << endl;
-        ent
+       gotoxy(75,24);  cout << "Password match" ;
+         gotoxy(75,25); cout    << "Welcome " << b.username << "!!" << endl;
+         gotoxy(75,26);ent
             showcustomerMenu(b);
     }
     else
     {
-        cout<< "\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
+         gotoxy(75,24);cout<< "PASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
     }
 }

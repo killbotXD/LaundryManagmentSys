@@ -8,12 +8,12 @@ int main()
     do
     {
         clrscr();
-       cout <<blue<<"*******************Welcome*******************" << endl;
-       cout <<green<<"1)Admin" << endl;
-        cout << "2)Customer" << endl;
-        cout << "3)Laundry Boy" << endl;
-        cout << "4)Exit" << endl;
-        cout << "Enter any one of the choices: ";
+       gotoxy(75,15);cout <<blue<<"*******************Welcome*******************" << endl;
+       gotoxy(75,16);cout <<green<<"1)Admin" << endl;
+        gotoxy(75,17);cout << "2)Customer" << endl;
+        gotoxy(75,18);cout << "3)Laundry Boy" << endl;
+        gotoxy(75,19);cout << "4)Exit" << endl;
+        gotoxy(75,20);cout << "Enter any one of the choices: ";
         inp = input();
         switch (inp)
         {
@@ -34,10 +34,10 @@ int main()
         }
         case 4:
         {
-            cout << "Thanks for visiting .... :)"<<endl;
+            gotoxy(75,21);cout << "Thanks for visiting .... :)"<<endl;
             break;
         }
         }
-        ent
+        gotoxy(75,27);ent
     } while (inp != 4);
 }

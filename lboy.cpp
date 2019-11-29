@@ -306,7 +306,7 @@ void loginlboy()
     lboy b;
     string tempid, temppwd;
     is_firsttime_launch_lboy();
-    cout << "enter your ID: ";
+    gotoxy(75,21); cout << "enter your ID: ";
     cin >> tempid;
     flboy.open("lboy.dat", ios::in);
     flboy.seekg(0);
@@ -315,27 +315,27 @@ void loginlboy()
         flboy.read((char *)&b, sizeof(b));
         if (strcmp(b.id, tempid.c_str()) == 0)
         {
-            cout << "User Found!!" << endl;
+             gotoxy(75,22);cout << "User Found!!" << endl;
             break;
         }
     }
     if (strcmp(b.id, tempid.c_str()) != 0)
     {
-        cout << "User not Found!!" << endl;
+         gotoxy(75,22);cout << "User not Found!!" << endl;
         return;
     }
     flboy.close();
-    temppwd = inpPassword(strlen(b.password));
+    gotoxy(75,23); temppwd = inpPassword(strlen(b.password));
     if (strcmp(b.password, temppwd.c_str()) == 0)
     {
-        cout << "\nPassword match" << endl
-             << "Welcome " << b.username << "!!" << endl;
-        ent
+         gotoxy(75,24);cout << "Password match";// << endl
+              gotoxy(75,25);cout<< "Welcome " << b.username << "!!" << endl;
+         gotoxy(75,26);ent
             showlboyMenu(b);
     }
     else
     {
-        cout << "\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
-        ent
+         gotoxy(75,24);cout << "PASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
+        
     }
 }

@@ -546,7 +546,7 @@ void loginadmin()
     string tempid, temppwd;
     is_firsttime_launch_admin();
     
-    cout << green<<"enter your ID: ";
+    gotoxy(75,21);cout << green<<"enter your ID: ";
     cin >> tempid;
     fadmin.open("admins.dat", ios::in);
     fadmin.seekg(0);
@@ -555,27 +555,28 @@ void loginadmin()
         fadmin.read((char *)&a, sizeof(a));
         if (strcmp(a.id, tempid.c_str()) == 0)
         {
-            cout << "User Found!!" << endl;
+            gotoxy(75,22);cout << "User Found!!" << endl;
             break;
         }
     }
     if (strcmp(a.id, tempid.c_str()) != 0)
     {
-        cout << "User not Found!!" << endl;
+        gotoxy(75,22);cout << "User not Found!!" << endl;
         return;
     }
     fadmin.close();
-
+    gotoxy(75,23);
     temppwd = inpPassword(strlen(a.password));
+    
     if (strcmp(a.password, temppwd.c_str()) == 0)
     {
-        cout << "\nPassword match" << endl
-             << "Welcome " << a.username << "!!" << endl;
-        ent
+        gotoxy(75,24);cout << "Password match";
+          gotoxy(75,25);  cout << "Welcome " << a.username << "!!" << endl;
+       gotoxy(75,26); ent
         showAdminMenu();
     }
     else
     {
-        cout << "password Incorrect Try again!!!" << endl;
+        gotoxy(75,24); cout << "password Incorrect Try again!!!" << endl;
     }
 }

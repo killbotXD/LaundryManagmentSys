@@ -45,7 +45,7 @@ using namespace std;
 
 #define ent                               \
     {                                     \
-        cout << "press enter..." << endl; \
+        cout << "press enter..." ; \
         getch();                          \
     }
 void gotoxy(int x, int y)
