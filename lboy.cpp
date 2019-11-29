@@ -46,8 +46,9 @@ void addItem(laundry &launItem)
 //laundry launItem;
 t:
     clrscr();
-
+    cout<<blue;
     printf("Choose Item to be added\n");
+    cout<<green;
     printf("1)Shrit\n");
     printf("2)T-Shrit\n");
     printf("3)Jeans\n");
@@ -58,6 +59,7 @@ t:
     printf("8)Lower\n");
     printf("9)Shorts\n");
     cout << "10)none" << endl;
+    cout<<def;
     int z = input();
     int quan;
     cout << "Enter the Quantity to be added" << endl;
@@ -78,8 +80,9 @@ void deleteItem(laundry &launItem)
 //laundry launItem;
 t:
     clrscr();
-
+    cout<<blue;
     printf("Choose Item to be deleted\n");
+    cout<<green;
     printf("1)Shrit\n");
     printf("2)T-Shrit\n");
     printf("3)Jeans\n");
@@ -90,6 +93,7 @@ t:
     printf("8)Lower\n");
     printf("9)Shorts\n");
     cout << "10)none" << endl;
+    cout<<def;
     int z = input();
     if (z != 10)
         launItem.lItemQty[z - 1] = 0;
@@ -106,7 +110,9 @@ void editItem(laundry &launItem)
 //laundry launItem;
 t:
     clrscr();
+    cout<<blue;
     printf("Choose Item whose quantity is to be changed\n");
+    cout<<green;
     printf("1)Shrit\n");
     printf("2)T-Shrit\n");
     printf("3)Jeans\n");
@@ -117,6 +123,7 @@ t:
     printf("8)Lower\n");
     printf("9)Shorts\n");
     cout << "10)none" << endl;
+    cout<<def;
     int z = input();
     int newQuan;
     cout << "Enter the new quantity to be added";
@@ -164,6 +171,7 @@ void showlboyMenu(lboy &b)
     {
         clrscr();
        cout <<blue<<"*****************LAUNDRY MENU************" << endl;
+       cout<<green;
         printf("Enter choice...\n");
         printf("1)Display Schedule\n");
         printf("2)Add Laundry\n");
@@ -171,6 +179,7 @@ void showlboyMenu(lboy &b)
         cout << "3)Register Customer" << endl;
         printf("4)Exit\n");
         cout << "Enter Any one of the choices: ";
+        cout<< def;
         x = input();
         switch (x)
         {
@@ -206,15 +215,20 @@ void showlboyMenu(lboy &b)
             do
             {
                 clrscr();
+                cout<<blue;
                 printf("Current laundry slip contains\n");
+                cout<<green;
                 showSlip(*launItem);
+                cout<<blue;
                 cout << "what do you want to do?" << endl;
+                cout<<green;
                 printf("1)Add Items\n");
                 cout << "2)Edit Item" << endl;
                 cout << "3)Delete Item" << endl;
                 cout << "4)Place laundry" << endl;
                 printf("5)Exit \n");
                 cout << "Enter any one of the choices: ";
+                cout<<def;
                 y = input();
                 switch (y)
                 {

@@ -14,8 +14,8 @@
 namespace Color {
     enum Code {
         FG_RED      = 31,
-        FG_GREEN    = 32,
-        FG_BLUE     = 34,
+        FG_GREEN    = 92,
+        FG_BLUE     = 96,
         FG_DEFAULT  = 39,
         BG_RED      = 41,
         BG_GREEN    = 42,
@@ -35,6 +35,7 @@ namespace Color {
 Color::Modifier green(Color::FG_GREEN);
     Color::Modifier def(Color::FG_DEFAULT);
     Color::Modifier blue(Color::FG_BLUE);
+    Color::Modifier blueblack(Color::BG_BLUE);
 #ifdef _WIN32
 #include <Windows.h>
 #else
