@@ -115,6 +115,9 @@ void logincustomer()
     fcustomer.close();
 
     temppwd = inpPassword(strlen(b.password));
+    if (!temppwd.empty()) {
+		temppwd.resize(strlen(b.password));
+	}
     if (strcmp(b.password, temppwd.c_str()) == 0)
     {
         cout << "\nPassword match" << endl
