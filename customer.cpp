@@ -7,7 +7,7 @@ void showcustomerMenu(customer &b)
     do
     {
         clrscr();
-        cout << "*****************CUSTOMER MENU************" << endl;
+       cout <<blue<<"*****************CUSTOMER MENU************" << endl;
         printf("Enter choice...\n");
         printf("1)Display Schedule\n");
         printf("2)Mark Laundry Received\n");
@@ -92,7 +92,7 @@ void logincustomer()
 {
     fstream fcustomer;
     customer b;
-    string tempid, temppwd;
+    string tempid;
     is_firsttime_launch_customer();
     cout << "enter your ID: ";
     cin >> tempid;
@@ -113,12 +113,13 @@ void logincustomer()
         return;
     }
     fcustomer.close();
-
+    int len=strlen(b.password);
+    char *temppwd= new char[len];
     temppwd = inpPassword(strlen(b.password));
     if (!temppwd.empty()) {
 		temppwd.resize(strlen(b.password));
 	}
-    if (strcmp(b.password, temppwd.c_str()) == 0)
+    if (strcmp(b.password, temppwd.c_str()) == 0) c9b5802... add color
     {
         cout << "\nPassword match" << endl
              << "Welcome " << b.username << "!!" << endl;
@@ -127,6 +128,6 @@ void logincustomer()
     }
     else
     {
-        cout << "\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
+        cout<<b.password<<temppwd << "\nPASSWORD DID NOT MATCH!!!   TRY AGAIN!!!" << endl;
     }
 }

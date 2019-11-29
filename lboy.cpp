@@ -1,7 +1,7 @@
 void addCustomer()
 {
     is_firsttime_launch_customer();
-    cout << "**************Sign UP**************" << endl;
+   cout <<blue<<"**************Sign UP**************" << endl;
     fstream fnewcustomer;
     customer newcustomer;
     string temppwd, tmpusername, tmpid, temphostel, temproomnumber;
@@ -163,7 +163,7 @@ void showlboyMenu(lboy &b)
     do
     {
         clrscr();
-        cout << "*****************LAUNDRY MENU************" << endl;
+       cout <<blue<<"*****************LAUNDRY MENU************" << endl;
         printf("Enter choice...\n");
         printf("1)Display Schedule\n");
         printf("2)Add Laundry\n");

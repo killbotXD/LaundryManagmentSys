@@ -56,16 +56,16 @@ int scheduleExists()
 
     return 0;
 }
-char listOfDays[7][10] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+char listOfDays[8][10] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday","Exit"};
 void printScheduleMenu()
 {
 
-    cout << "*****************Schedule*****************" << endl;
-    for (int i = 0; i < 7; i++)
+   cout <<blue<<"*****************Schedule*****************" << endl;
+    for (int i = 0; i < 8; i++)
     {
-        cout << i + 1 << ")" << listOfDays[i] << endl;
+        cout <<green<< i + 1 << ")" << listOfDays[i] << endl;
     }
-    // cout<<"1)Monday"<<endl;
+    //cout <<green<<"1)Monday"<<endl;
     // cout<<"2)Tuesday"<<endl;
     // cout<<"3)Wednesday"<<endl;
     // cout<<"4)Thursday"<<endl;
@@ -78,7 +78,7 @@ void printScheduleMenu()
 void addlboy()
 {
     is_firsttime_launch_lboy();
-    cout << "**************Sign UP**************" << endl;
+   cout <<blue<<"**************Sign UP**************" << endl;
     fstream fnewlboy;
     lboy newlboy;
     string temppwd, tmpusername, tmpid, temphostel, temproomnumber;
@@ -180,7 +180,7 @@ t:
     cout << endl
          << endl;
     cout << "What do you want to change?" << endl;
-    cout << "1)Day" << endl;
+   cout <<green<<"1)Day" << endl;
     cout << "2)Address" << endl;
     cout << "3)list of laundry Boys" << endl;
     cout << "4)Confirm and Exit." << endl;
@@ -322,7 +322,7 @@ void editScheduleItem()
     {
         clrscr();
         printScheduleMenu();
-        cout<<"8)Exit"<<endl;
+        //cout<<"8)Exit"<<endl;
         inpEdit = input();
         switch (inpEdit)
         {
@@ -410,8 +410,8 @@ void updateScheduleMenu()
     do
     {
         clrscr();
-        cout << "***********************Update Schedule Menu***********************" << endl;
-        cout << "1)Add Schedule Item" << endl;
+       cout <<blue<<"***********************Update Schedule Menu***********************" << endl;
+       cout <<green<<"1)Add Schedule Item" << endl;
         cout << "2)Edit Schedule Item" << endl;
         cout << "3)Exit" << endl;
         cout << "Choose an Option:";
@@ -454,8 +454,8 @@ void showAdminMenu()
     do
     {
         clrscr();
-        cout << "*****************ADMIN MENU************" << endl;
-        cout << "1)Update Schedulle" << endl;
+       cout <<blue<<"*****************ADMIN MENU************" << endl;
+       cout <<green<<"1)Update Schedule" << endl;
         cout << "2)Add New Admin" << endl;
         cout << "3)View Schedule" << endl;
         cout << "4)Register Laundry Personell" << endl;
@@ -473,7 +473,7 @@ void showAdminMenu()
         case 2:
         {
             clrscr();
-            cout << "**************Sign UP**************" << endl;
+           cout <<blue<<"**************Sign UP**************" << endl;
             fstream fnewadmin;
             admin newAdmin;
             string temppwd, tmpusername, tmpid, tmpmobile;
@@ -501,7 +501,7 @@ void showAdminMenu()
                 cout << "Enter Password:";
                 cin >> temppwd;
                 strcpy(newAdmin.password, temppwd.c_str());
-                cout << "Enter Mobile number";
+                cout << "Enter Mobile number: ";
                 cin >> tmpmobile;
                 strcpy(newAdmin.mobile, tmpmobile.c_str());
                 fnewadmin.open("admins.dat", ios::out | ios::app);
@@ -516,9 +516,10 @@ void showAdminMenu()
             int querydayinp;
             clrscr();
             printScheduleMenu();
-            cout<<"8)Exit"<<endl;
+            //cout<<"8)Exit"<<endl;
             cin >> querydayinp;
-            viewSchedule_admin(listOfDays[querydayinp - 1]);
+            if(querydayinp!=8)
+                viewSchedule_admin(listOfDays[querydayinp - 1]);
             cout << endl;
             ent break;
         }
@@ -544,7 +545,8 @@ void loginadmin()
     admin a;
     string tempid, temppwd;
     is_firsttime_launch_admin();
-    cout << "enter your ID: ";
+    
+    cout << green<<"enter your ID: ";
     cin >> tempid;
     fadmin.open("admins.dat", ios::in);
     fadmin.seekg(0);
